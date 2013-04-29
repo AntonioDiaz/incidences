@@ -3,7 +3,9 @@ incidences
 
 Application to send alerts of incidences to android devices.
 
-Uses:
-Google App Engine
-Google Cloud Messaging
+Technologies:
+<ol>
+<li>Google App Engine<br>
+<li>Google Cloud Messaging<br>
+</ol>
 
