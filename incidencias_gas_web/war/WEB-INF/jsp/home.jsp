@@ -17,7 +17,7 @@
 		<tr>
 			<td><h1>Administración de incidencias:</h1></td>
 			<td width="30%">
-				conectado con: <%=request.getUserPrincipal().getName()%> 
+				conectado con: <b><%=request.getUserPrincipal().getName()%></b> 
 				<a href="<%=userService.createLogoutURL("/")%>">desconectar</a> 
 			</td>
 		</tr>

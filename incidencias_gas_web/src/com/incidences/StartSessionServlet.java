@@ -1,4 +1,4 @@
-package com.google.android.gcm.demo.server;
+package com.incidences;
 
 import java.io.IOException;
 

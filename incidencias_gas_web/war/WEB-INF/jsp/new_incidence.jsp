@@ -19,7 +19,7 @@
 			left: 50%;
 			margin-left: -8px;
 			display: block;
-			background: url(crosshair.gif);
+			background: url(images/crosshair.gif);
 			background-position: center center;
 			background-repeat: no-repeat;
 		}

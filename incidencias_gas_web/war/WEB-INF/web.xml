@@ -5,11 +5,11 @@
 		xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
 		http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	<listener>
-		<listener-class>com.google.android.gcm.demo.server.ApiKeyInitializer</listener-class>
+		<listener-class>com.incidences.ApiKeyInitializer</listener-class>
 	</listener>
 	<servlet>
 		<servlet-name>StartSessionServlet</servlet-name>
-		<servlet-class>com.google.android.gcm.demo.server.StartSessionServlet</servlet-class>
+		<servlet-class>com.incidences.StartSessionServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>StartSessionServlet</servlet-name>
@@ -18,7 +18,7 @@
 	</servlet-mapping>	
 	<servlet>
 		<servlet-name>RegisterServlet</servlet-name>
-		<servlet-class>com.google.android.gcm.demo.server.RegisterServlet</servlet-class>
+		<servlet-class>com.incidences.RegisterServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet-mapping>
@@ -27,7 +27,7 @@
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>UnregisterServlet</servlet-name>
-		<servlet-class>com.google.android.gcm.demo.server.UnregisterServlet</servlet-class>
+		<servlet-class>com.incidences.UnregisterServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet-mapping>
@@ -36,7 +36,7 @@
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>SendAllMessagesServlet</servlet-name>
-		<servlet-class>com.google.android.gcm.demo.server.SendAllMessagesServlet</servlet-class>
+		<servlet-class>com.incidences.SendAllMessagesServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet-mapping>
@@ -45,7 +45,7 @@
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>HomeServlet</servlet-name>
-		<servlet-class>com.google.android.gcm.demo.server.HomeServlet</servlet-class>
+		<servlet-class>com.incidences.HomeServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet-mapping>
@@ -54,7 +54,7 @@
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>DevicesServlet</servlet-name>
-		<servlet-class>com.google.android.gcm.demo.server.DevicesServlet</servlet-class>
+		<servlet-class>com.incidences.DevicesServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>DevicesServlet</servlet-name>
@@ -63,7 +63,7 @@
 
 	<servlet>
 		<servlet-name>IncidencesListServlet</servlet-name>
-		<servlet-class>com.google.android.gcm.demo.server.IncidencesListServlet</servlet-class>
+		<servlet-class>com.incidences.IncidencesListServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>IncidencesListServlet</servlet-name>
@@ -72,7 +72,7 @@
 
 	<servlet>
 		<servlet-name>SendMessageServlet</servlet-name>
-		<servlet-class>com.google.android.gcm.demo.server.SendMessageServlet</servlet-class>
+		<servlet-class>com.incidences.SendMessageServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 
