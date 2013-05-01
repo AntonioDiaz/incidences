@@ -43,7 +43,6 @@ public class ApiKeyInitializer implements ServletContextListener {
 	public void contextInitialized(ServletContextEvent event) {
 		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 		Key key = KeyFactory.createKey(ENTITY_KIND, ENTITY_KEY);
-
 		Entity entity;
 		try {
 			entity = datastore.get(key);
@@ -53,14 +52,15 @@ public class ApiKeyInitializer implements ServletContextListener {
 			// it will be necessary to hardcode the API key below if you are running it locally.
 			entity.setProperty(ACCESS_KEY_FIELD, "AIzaSyA1rfgrM4Mlrbob4NnshChqJXfva5o13iM");
 			datastore.put(entity);
-			logger.severe("Created fake key. Please go to App Engine admin " + "console, change its value to your API Key (the entity " + "type is '"
-					+ ENTITY_KIND + "' and its field to be changed is '" + ACCESS_KEY_FIELD + "'), then restart the server!");
+			String msgLog = "Created fake key. Please go to App Engine admin console,"; 
+			msgLog += "change its value to your API Key (the entity " + "type is '";
+			msgLog += ENTITY_KIND + "' and its field to be changed is '" + ACCESS_KEY_FIELD + "'), then restart the server!";
+			logger.severe(msgLog);
 		}
 		String accessKey = (String) entity.getProperty(ACCESS_KEY_FIELD);
 		event.getServletContext().setAttribute(ATTRIBUTE_ACCESS_KEY, accessKey);
 	}
 
-	public void contextDestroyed(ServletContextEvent event) {
-	}
+	public void contextDestroyed(ServletContextEvent event) {}
 
 }

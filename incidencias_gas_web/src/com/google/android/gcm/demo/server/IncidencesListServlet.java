@@ -17,7 +17,7 @@ public class IncidencesListServlet extends BaseServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-		RequestDispatcher rd = getServletContext().getRequestDispatcher("/incidences_list.jsp");
+		RequestDispatcher rd = getServletContext().getRequestDispatcher(PATH_JSP + "incidences_list.jsp");
 		rd.forward(req, resp);
 	}
 
