@@ -44,15 +44,12 @@
 		geocoder = new google.maps.Geocoder();
 		setupEvents();
 		centerChanged();
-		
 		var position = getElementTopLeft("map_canvas");
 		var div = document.getElementById('crosshair');
 		myLeft = position.left + document.getElementById("map_canvas").offsetWidth/2;
 		myTop = position.top + document.getElementById("map_canvas").offsetHeight/2;
 		div.style.left = myLeft + 'px';
 		div.style.top = myTop + 'px';
-		
-		
 	}
 	
 	function getElementTopLeft(id) {
@@ -73,14 +70,12 @@
 	function setupEvents() {
 		reverseGeocodedLast = new Date();
 		centerChangedLast = new Date();
-
 		setInterval(
 				function() {
-					if ((new Date()).getSeconds()
-							- centerChangedLast.getSeconds() > 1) {
-						if (reverseGeocodedLast.getTime() < centerChangedLast
-								.getTime())
+					if ((new Date()).getSeconds() - centerChangedLast.getSeconds() > 1) {
+						if (reverseGeocodedLast.getTime() < centerChangedLast.getTime()) {
 							reverseGeocode();
+						}
 					}
 				}, 1000);
 
@@ -110,9 +105,7 @@
 
 	function reverseGeocode() {
 		reverseGeocodedLast = new Date();
-		geocoder.geocode({
-			latLng : map.getCenter()
-		}, reverseGeocodeResult);
+		geocoder.geocode({latLng : map.getCenter()}, reverseGeocodeResult);
 	}
 
 	function reverseGeocodeResult(results, status) {
@@ -148,7 +141,7 @@
 		var txtAddress = document.getElementById('formatedAddress').innerHTML;
 		txtAddress += " ";
 		txtAddress += document.getElementById('latlng').innerHTML;
-		document.getElementById("trouble_address").value = txtAddress;
+		document.getElementById("incidence_address").value = txtAddress;
 	}
 </script>
 	
@@ -159,14 +152,14 @@
 	<table width="100%" cellpadding="0px" cellspacing="0px">
 		<tr>
 			<td valign="top">
-				<form action="newIncidence" id="new_incidence" method="post">
+				<form action="createIncidence" id="new_incidence" method="post">
 					<table cellpadding="0px" cellspacing="0px">
 						<tr height="50px">
 							<td>
 								Nombre contacto:
 							</td>				
 							<td>
-								<input id="contact_name" type="text" size="30" maxlength="50">
+								<input id="contact_name" name="contact_name" type="text" size="30" maxlength="50">
 							</td>
 						</tr>
 						<tr height="50px">
@@ -174,7 +167,7 @@
 								Teléfono contacto:
 							</td>				
 							<td>
-								<input id="contact_phone" type="text" size="30" maxlength="50">
+								<input id="contact_phone" name="contact_phone" type="text" size="30" maxlength="50">
 							</td>
 						</tr>
 						<tr height="50px">
@@ -182,7 +175,7 @@
 								Dirección avería:
 							</td>				
 							<td>
-								<input id="trouble_address" type="text" size="64" maxlength="200"> 
+								<input id="incidence_address" name="incidence_address" type="text" size="64" maxlength="200"> 
 							</td>
 						</tr>			
 						<tr height="50px">
@@ -190,7 +183,7 @@
 								Descripción avería:
 							</td>				
 							<td>
-								<textarea rows="4" cols="50"></textarea>
+								<textarea id="incidence_details" name="incidence_details" rows="4" cols="50"></textarea>
 							</td>
 						</tr>
 						<tr>

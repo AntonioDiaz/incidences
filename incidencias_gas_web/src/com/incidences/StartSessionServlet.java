@@ -13,13 +13,7 @@ public class StartSessionServlet extends BaseServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String jspTarget = null;
-		try {
-			jspTarget = getParameter(req, "jsp_target");
-		} catch (ServletException e) {}
-		if (jspTarget==null || jspTarget.equals("")){
-			jspTarget = "home.jsp";
-		}
+		String jspTarget = "home.jsp";
 		RequestDispatcher rd = getServletContext().getRequestDispatcher(PATH_JSP + jspTarget);
 		rd.forward(req, resp);
 	}

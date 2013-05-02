@@ -43,7 +43,8 @@ abstract class BaseServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 		UserService userService = UserServiceFactory.getUserService();
-		String thisURL = req.getRequestURI();
+		//String thisURL = req.getRequestURI();
+		String thisURL = "/";
 		if (req.getUserPrincipal() == null) {
 			resp.getWriter().println("<p>Es necesario hacer <a href=\"" + userService.createLoginURL(thisURL) + "\">login</a>.</p>");
 		} else {
