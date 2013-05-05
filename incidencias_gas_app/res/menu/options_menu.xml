@@ -21,7 +21,6 @@
          unregister the device (you will also need to uncomment the equivalent
          options on DemoActivity.onOptionsItemSelected())
     -->
-    <!--
     <item
         android:id="@+id/options_register"
         android:title="@string/options_register">
@@ -30,7 +29,6 @@
         android:id="@+id/options_unregister"
         android:title="@string/options_unregister">
     </item>
-    -->
     <item
         android:id="@+id/options_clear"
         android:title="@string/options_clear">
