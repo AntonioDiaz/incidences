@@ -215,8 +215,7 @@ public final class Datastore {
 	}
 
 	/**
-	 * Gets a persistent record with the devices to be notified using a
-	 * multicast message.
+	 * Gets a persistent record with the devices to be notified using a multicast message.
 	 * 
 	 * @param encodedKey
 	 *            encoded key for the persistent record.

@@ -21,6 +21,7 @@ public class RegisterServlet extends BaseServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException {
 		String regId = getParameter(req, PARAMETER_REG_ID);
+		/* Only user with acces should be registered. */ 
 		Datastore.register(regId);
 		setSuccess(resp);
 	}

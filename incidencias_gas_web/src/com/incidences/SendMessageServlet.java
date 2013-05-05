@@ -1,18 +1,3 @@
-/*
- * Copyright 2012 Google Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not
- * use this file except in compliance with the License. You may obtain a copy of
- * the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
- * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 package com.incidences;
 
 import com.google.android.gcm.server.Constants;
@@ -128,14 +113,14 @@ public class SendMessageServlet extends BaseServlet {
 			logger.info("Succesfully sent message to device " + regId);
 			String canonicalRegId = result.getCanonicalRegistrationId();
 			if (canonicalRegId != null) {
-				// same device has more than on registration id: update it
+				/* same device has more than on registration id: update it. */
 				logger.finest("canonicalRegId " + canonicalRegId);
 				Datastore.updateRegistration(regId, canonicalRegId);
 			}
 		} else {
 			String error = result.getErrorCodeName();
 			if (error.equals(Constants.ERROR_NOT_REGISTERED)) {
-				// application has been removed from device - unregister it
+				/* application has been removed from device - unregister it */
 				Datastore.unregister(regId);
 			} else {
 				logger.severe("Error sending message to device " + regId + ": " + error);
@@ -144,7 +129,7 @@ public class SendMessageServlet extends BaseServlet {
 	}
 
 	private void sendMulticastMessage(String multicastKey, HttpServletResponse resp) {
-		// Recover registration ids from datastore
+		/* Recover registration ids from datastore. */
 		List<String> regIds = Datastore.getMulticast(multicastKey);
 		Message message = new Message.Builder().build();
 		MulticastResult multicastResult;
@@ -156,7 +141,7 @@ public class SendMessageServlet extends BaseServlet {
 			return;
 		}
 		boolean allDone = true;
-		// check if any registration id must be updated
+		/* check if any registration id must be updated. */
 		if (multicastResult.getCanonicalIds() != 0) {
 			List<Result> results = multicastResult.getResults();
 			for (int i = 0; i < results.size(); i++) {
@@ -168,7 +153,7 @@ public class SendMessageServlet extends BaseServlet {
 			}
 		}
 		if (multicastResult.getFailure() != 0) {
-			// there were failures, check if any could be retried
+			/* there were failures, check if any could be retried. */ 
 			List<Result> results = multicastResult.getResults();
 			List<String> retriableRegIds = new ArrayList<String>();
 			for (int i = 0; i < results.size(); i++) {
@@ -177,8 +162,7 @@ public class SendMessageServlet extends BaseServlet {
 					String regId = regIds.get(i);
 					logger.warning("Got error (" + error + ") for regId " + regId);
 					if (error.equals(Constants.ERROR_NOT_REGISTERED)) {
-						// application has been removed from device - unregister
-						// it
+						/* application has been removed from device - unregister it. */
 						Datastore.unregister(regId);
 					}
 					if (error.equals(Constants.ERROR_UNAVAILABLE)) {
@@ -187,7 +171,7 @@ public class SendMessageServlet extends BaseServlet {
 				}
 			}
 			if (!retriableRegIds.isEmpty()) {
-				// update task
+				/* update task */
 				Datastore.updateMulticast(multicastKey, retriableRegIds);
 				allDone = false;
 				retryTask(resp);
@@ -204,5 +188,4 @@ public class SendMessageServlet extends BaseServlet {
 		Datastore.deleteMulticast(encodedKey);
 		taskDone(resp);
 	}
-
 }
