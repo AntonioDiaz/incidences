@@ -4,9 +4,6 @@ import static com.google.android.gcm.demo.app.CommonUtilities.DISPLAY_MESSAGE_AC
 import static com.google.android.gcm.demo.app.CommonUtilities.EXTRA_MESSAGE;
 import static com.google.android.gcm.demo.app.CommonUtilities.SENDER_ID;
 import static com.google.android.gcm.demo.app.CommonUtilities.SERVER_URL;
-
-import com.google.android.gcm.GCMRegistrar;
-
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -18,7 +15,12 @@ import android.telephony.TelephonyManager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.TextView;
+
+import com.google.android.gcm.GCMRegistrar;
 
 /**
  * Main UI for the demo app.
@@ -27,6 +29,7 @@ public class DemoActivity extends Activity {
 
 	TextView mDisplay;
 	AsyncTask<Void, Void, Void> mRegisterTask;
+	private Context mContext;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -43,7 +46,6 @@ public class DemoActivity extends Activity {
 		final String regId = GCMRegistrar.getRegistrationId(this);
 		if (regId.equals("")) {
 			/* Automatically registers application on startup. */
-
 			GCMRegistrar.register(this, SENDER_ID);
 		} else {
 			/* Device is already registered on GCM, check server. */
@@ -78,6 +80,18 @@ public class DemoActivity extends Activity {
 				mRegisterTask.execute(null, null, null);
 			}
 		}
+		mContext = this;
+		Button button = (Button)findViewById(R.id.show_list_button);
+		button.setOnClickListener(this.createShowListListener());
+	}
+
+	private OnClickListener createShowListListener() {
+		return new OnClickListener() {			
+			@Override
+			public void onClick(View v) {
+				mContext.startActivity(new Intent(mContext, ActivityList.class));				
+			}
+		};
 	}
 
 	@Override

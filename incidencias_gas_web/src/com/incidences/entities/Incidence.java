@@ -48,6 +48,10 @@ public class Incidence {
 		this.incidenceDate = new Date();
 	}
 
+	public Incidence() {
+		super();
+	}
+
 	public Long getId() {
 		return id;
 	}

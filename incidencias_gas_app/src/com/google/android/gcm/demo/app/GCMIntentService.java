@@ -17,7 +17,6 @@ import com.google.android.gcm.GCMRegistrar;
 /** IntentService responsible for handling GCM messages. */
 public class GCMIntentService extends GCMBaseIntentService {
 
-	@SuppressWarnings("hiding")
 	private static final String TAG = "GCMIntentService";
 
 	public GCMIntentService() {
@@ -83,6 +82,10 @@ public class GCMIntentService extends GCMBaseIntentService {
 		long when = System.currentTimeMillis();
 		NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 		Notification notification = new Notification(icon, message, when);
+		notification.ledARGB = 0xFFff0000;
+		notification.flags = Notification.FLAG_SHOW_LIGHTS;
+		notification.ledOnMS = 100; 
+		notification.ledOffMS = 100; 
 		String title = context.getString(R.string.app_name);
 		Intent notificationIntent = new Intent(context, DemoActivity.class);
 		/* set intent so it does not start a new activity. */

@@ -13,7 +13,16 @@
 </style>	
 </head>
 <body>
-	<h1>Lista de Incidencias:</h1>
+	<table width="80%">
+		<tr>
+			<td>
+				<h1>Lista de Incidencias:</h1>			
+			</td>
+			<td>
+				<a href="/">inicio</a>			
+			</td>
+		</tr>
+	</table>
 	<hr>
 	<table border="0px" cellpadding="0px" cellspacing="0px" width="90%" class="listStyle">
 		<tr style="font-weight: bold;">
@@ -37,9 +46,6 @@
 					</c:url>
 					<a href='<c:out value="${deleteLink}" escapeXml="true"/>'>borrar</a>
 				</td>
-			</tr>
-			<tr>
-				<td colspan="6"><c:out value="${myIncidence}" ></c:out></td>
 			</tr>
 		</c:forEach>
 	</table>

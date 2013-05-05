@@ -32,8 +32,9 @@ public class HomeServlet extends BaseServlet {
 			out.print(status);
 		}
 		int total = Datastore.getTotalDevices();
+		out.print("<table width='80%'><tr><td align='right'><a href='/'>inicio</a></td></tr></table>");
 		if (total == 0) {
-			out.print("<h2>No devices registered!</h2>");
+			out.print("<h2>técnicos registrados:</h2>");
 		} else {
 			out.print("<h2>" + total + " device(s) registered!</h2>");
 

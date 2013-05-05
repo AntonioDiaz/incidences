@@ -102,4 +102,13 @@
 	    <servlet-name>DeleteIncidenceServlet</servlet-name>
 	    <url-pattern>/deleteIncidence</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+	    <servlet-name>IncidencesListJsonServlet</servlet-name>
+		<servlet-class>com.incidences.IncidencesListJsonServlet</servlet-class>	    
+	</servlet>
+	<servlet-mapping>
+	    <servlet-name>IncidencesListJsonServlet</servlet-name>
+	    <url-pattern>/incidencesJson</url-pattern>
+	</servlet-mapping>
 </web-app>
