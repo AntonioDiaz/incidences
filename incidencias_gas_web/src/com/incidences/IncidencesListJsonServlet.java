@@ -24,6 +24,7 @@ public class IncidencesListJsonServlet extends BaseServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		IncidencesDao incidencesDao = new IncidencesDaoImplJdo();
 		resp.setContentType("application/json");
+		resp.setCharacterEncoding("UTF-8");
 		PrintWriter out = resp.getWriter();
 		Gson gson = new Gson();
 		String json = gson.toJson(incidencesDao.allIncicendesList());  
