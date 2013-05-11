@@ -6,9 +6,15 @@
 
     <Button
         android:id="@+id/show_list_button"
-        android:layout_width="wrap_content"
+        android:layout_width="230dp"
         android:layout_height="wrap_content"
         android:text="@string/button_show_list"
+        android:layout_gravity="center" />
+    <Button
+        android:id="@+id/show_list_pending_button"
+        android:layout_width="230dp"
+        android:layout_height="wrap_content"
+        android:text="@string/button_show_list_pending"
         android:layout_gravity="center" />
 
     <ScrollView

@@ -83,6 +83,8 @@ public class DemoActivity extends Activity {
 		mContext = this;
 		Button button = (Button)findViewById(R.id.show_list_button);
 		button.setOnClickListener(this.createShowListListener());
+		button = (Button)findViewById(R.id.show_list_pending_button);
+		button.setOnClickListener(this.createShowListListener());
 	}
 
 	private OnClickListener createShowListListener() {

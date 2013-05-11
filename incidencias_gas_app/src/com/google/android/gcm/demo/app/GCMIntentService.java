@@ -77,6 +77,7 @@ public class GCMIntentService extends GCMBaseIntentService {
 	}
 
 	/** Issues a notification to inform the user that server has sent a message. */
+	@SuppressWarnings("deprecation")
 	private static void generateNotification(Context context, String message) {
 		int icon = R.drawable.ic_stat_gcm;
 		long when = System.currentTimeMillis();

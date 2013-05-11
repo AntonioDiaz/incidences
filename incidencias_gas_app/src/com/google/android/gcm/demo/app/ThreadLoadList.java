@@ -37,7 +37,7 @@ public class ThreadLoadList extends Thread {
 		Gson gson = new Gson();
 		Type type = new TypeToken<ArrayList<Incidence>>(){}.getType();
 		List<Incidence> incidences = gson.fromJson(jSonStr, type);
-		ActivityList.list = incidences;
+		ActivityList.setIncidences(incidences);
 		handler.sendMessage(new Message());
 	}
 

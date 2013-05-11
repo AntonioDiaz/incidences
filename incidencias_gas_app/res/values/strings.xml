@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Incident Management</string>
+    <string name="app_name">Gestión de Incidencias</string>
     <string name="error_config">Please set the %1$s constant and recompile the app.</string>
     <string name="already_registered">Device is already registered on server.</string>
     <string name="gcm_registered">From GCM: device successfully registered!</string>
@@ -18,6 +18,19 @@
     <string name="options_unregister">Unregister</string>
     <string name="options_clear">Clear</string>
     <string name="options_exit">Exit</string>
-    <string name="button_show_list">Show List</string>
-    <string name="incidences_list">Incidences List:</string>
+    <string name="button_show_list">Incidencias</string>
+    <string name="button_show_list_pending">Incidencias pendientes</string>
+    <string name="incidences_list">Lista de incidencias:</string>
+    <string name="incidence_detail">Detalle de la incidencia:</string>
+    <string name="temp"></string>
+    
+    
+    
+    <string name="incidence_date">Fecha: </string>
+    <string name="incidence_name">Nombre: </string>
+    <string name="incidence_phone">Teléfono: </string>
+    <string name="incidence_address">Dirección: </string>
+    <string name="incidence_desc">Descripción: </string>
+    <string name="incidence_call">Llamar</string>
+    <string name="incidence_map">Mapa</string>
 </resources>

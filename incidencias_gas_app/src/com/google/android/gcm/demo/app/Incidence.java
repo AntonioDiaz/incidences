@@ -92,6 +92,16 @@ public class Incidence {
 		position = position==-1?this.incidenceAddress.length():position;
 		return this.incidenceAddress.substring(0, position);
 	}
+
+	public String[] getGpsCoordinates(){
+		String[] gpsCoordinates = null;
+		Integer position = this.incidenceAddress.lastIndexOf("(");
+		if (position!=-1) {
+			String substr = this.incidenceAddress.substring(position + 1, this.incidenceAddress.length());
+			gpsCoordinates = substr.split(", ");
+		}
+		return gpsCoordinates;
+	}
 	
     public String toString (){
   	   return ToStringBuilder.reflectionToString(this);
