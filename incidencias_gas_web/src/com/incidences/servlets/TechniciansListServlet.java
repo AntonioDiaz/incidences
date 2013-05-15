@@ -7,19 +7,24 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.incidences.entities.TechnicianDeviceDao;
-import com.incidences.entities.TechnicianDeviceImpJdo;
+import com.incidences.entities.TechnicianDao;
+import com.incidences.entities.TechnicianImpJdo;
 
 
-public class TechnicianServlet extends BaseServlet {
+public class TechniciansListServlet extends BaseServlet {
 
 	private static final long serialVersionUID = 1L;
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-		TechnicianDeviceDao technicianDeviceDao = new TechnicianDeviceImpJdo();
+		TechnicianDao technicianDeviceDao = new TechnicianImpJdo();
 		req.setAttribute("technicians_list", technicianDeviceDao.getAllTechnicians());		
 		RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher(PATH_JSP + "/thecnicians.jsp");
 		requestDispatcher.forward(req, resp);
+	}
+	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		doGet(req, resp);
 	}
 }

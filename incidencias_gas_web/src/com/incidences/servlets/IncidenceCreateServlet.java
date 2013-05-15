@@ -18,7 +18,7 @@ import com.incidences.entities.IncidencesDaoImplJdo;
  *
  */
 
-public class CreateIncidenceServlet extends BaseServlet {
+public class IncidenceCreateServlet extends BaseServlet {
 
 	private static final long serialVersionUID = 1L;
 
@@ -31,7 +31,7 @@ public class CreateIncidenceServlet extends BaseServlet {
 		String incidenceDesc = getParameter(req, "incidence_details");
 		Incidence incidence = new Incidence(contactName, contactPhone, incidenceAddress, incidenceDesc);
 		incidencesDao.create(incidence);
-		RequestDispatcher rd = getServletContext().getRequestDispatcher("/incidences");
+		RequestDispatcher rd = getServletContext().getRequestDispatcher("/incidencesList");
 		rd.forward(req, resp);
 	}
 }

@@ -41,7 +41,7 @@
 				<td><c:out value="${myIncidence.incidenceAddressNoGPS}"></c:out><br></td>
 				<td><c:out value="${myIncidence.incidenceDesc}"></c:out><br></td>
 				<td>
-					<c:url value="/deleteIncidence" var="deleteLink">
+					<c:url value="/incidenceDelete" var="deleteLink">
 						<c:param name="key" value="${myIncidence.id}"/>
 					</c:url>
 					<a href='<c:out value="${deleteLink}" escapeXml="true"/>'>borrar</a>

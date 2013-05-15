@@ -71,7 +71,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>IncidencesListServlet</servlet-name>
-		<url-pattern>/incidences</url-pattern>
+		<url-pattern>/incidencesList</url-pattern>
 	</servlet-mapping>
 
 	<servlet>
@@ -86,47 +86,56 @@
 	</servlet-mapping>
 
 	<servlet>
-	    <servlet-name>CreateIncidenceServlet</servlet-name>
-		<servlet-class>com.incidences.servlets.CreateIncidenceServlet</servlet-class>	    
+		<servlet-name>IncidenceCreateServlet</servlet-name>
+		<servlet-class>com.incidences.servlets.IncidenceCreateServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
-	    <servlet-name>CreateIncidenceServlet</servlet-name>
-	    <url-pattern>/createIncidence</url-pattern>
+		<servlet-name>IncidenceCreateServlet</servlet-name>
+		<url-pattern>/incidenceCreate</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
-	    <servlet-name>DeleteIncidenceServlet</servlet-name>
-		<servlet-class>com.incidences.servlets.DeleteIncidenceServlet</servlet-class>	    
+		<servlet-name>IncidenceDeleteServlet</servlet-name>
+		<servlet-class>com.incidences.servlets.IncidenceDeleteServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
-	    <servlet-name>DeleteIncidenceServlet</servlet-name>
-	    <url-pattern>/deleteIncidence</url-pattern>
+		<servlet-name>IncidenceDeleteServlet</servlet-name>
+		<url-pattern>/incidenceDelete</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
-	    <servlet-name>IncidencesListJsonServlet</servlet-name>
-		<servlet-class>com.incidences.servlets.IncidencesListJsonServlet</servlet-class>	    
+		<servlet-name>IncidencesListJsonServlet</servlet-name>
+		<servlet-class>com.incidences.servlets.IncidencesListJsonServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
-	    <servlet-name>IncidencesListJsonServlet</servlet-name>
-	    <url-pattern>/incidencesJson</url-pattern>
+		<servlet-name>IncidencesListJsonServlet</servlet-name>
+		<url-pattern>/incidencesJson</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
-	    <servlet-name>TechnicianServlet</servlet-name>
-		<servlet-class>com.incidences.servlets.TechnicianServlet</servlet-class>	    
+		<servlet-name>TechniciansListServlet</servlet-name>
+		<servlet-class>com.incidences.servlets.TechniciansListServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
-	    <servlet-name>TechnicianServlet</servlet-name>
-	    <url-pattern>/technician</url-pattern>
+		<servlet-name>TechniciansListServlet</servlet-name>
+		<url-pattern>/techniciansList</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
-	    <servlet-name>TechnicianNewServlet</servlet-name>
-		<servlet-class>com.incidences.servlets.TechnicianNewServlet</servlet-class>	    
+		<servlet-name>TechnicianCreateServlet</servlet-name>
+		<servlet-class>com.incidences.servlets.TechnicianCreateServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
-	    <servlet-name>TechnicianNewServlet</servlet-name>
-	    <url-pattern>/createTechnician</url-pattern>
+		<servlet-name>TechnicianCreateServlet</servlet-name>
+		<url-pattern>/createTechnician</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>TechnicianDeleteServlet</servlet-name>
+		<servlet-class>com.incidences.servlets.TechnicianDeleteServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>TechnicianDeleteServlet</servlet-name>
+		<url-pattern>/deleteTechnician</url-pattern>
 	</servlet-mapping>
 </web-app>

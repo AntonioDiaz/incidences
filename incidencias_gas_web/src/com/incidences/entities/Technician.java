@@ -15,15 +15,19 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
  */
 
 @PersistenceCapable
-public class TechnicianDevice {
+public class Technician {
 
-	public TechnicianDevice(String googleAccountId, String name, String phoneNumber) {
+	public Technician(String googleAccountId, String name, String phoneNumber) {
 		super();
 		this.googleAccountId = googleAccountId;
 		this.name = name;
 		this.phoneNumber = phoneNumber;
 	}
 
+	public Technician(){
+		super();
+	}
+	
 	@PrimaryKey
 	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
 	private Long id;
@@ -48,7 +52,7 @@ public class TechnicianDevice {
 
 	@Persistent
 	private String registrationGcmId;
-	
+
 	public String getGoogleAccountId() {
 		return googleAccountId;
 	}
@@ -97,6 +101,10 @@ public class TechnicianDevice {
 		this.lastRegistrationDate = lastRegistrationDate;
 	}
 
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -107,6 +115,14 @@ public class TechnicianDevice {
 
 	public void setRegistrationGcmId(String registrationGcmId) {
 		this.registrationGcmId = registrationGcmId;
+	}
+
+	public String getGpsFormated() {
+		String gpsFormated = "";
+		if (latitude != null && longitude != null) {
+			gpsFormated = "(" + latitude + "," + longitude + ")";
+		}
+		return gpsFormated;
 	}
 
 	public String toString() {

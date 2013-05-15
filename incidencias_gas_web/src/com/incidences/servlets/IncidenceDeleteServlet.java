@@ -11,7 +11,12 @@ import com.incidences.entities.Incidence;
 import com.incidences.entities.IncidencesDao;
 import com.incidences.entities.IncidencesDaoImplJdo;
 
-public class DeleteIncidenceServlet extends BaseServlet {
+/**
+ * 
+ * @author toni
+ *
+ */
+public class IncidenceDeleteServlet extends BaseServlet {
 
 	private static final long serialVersionUID = 1L;
 
@@ -22,8 +27,7 @@ public class DeleteIncidenceServlet extends BaseServlet {
 		Incidence incidence = new Incidence();
 		incidence.setId(Long.parseLong(keyStr));
 		incidencesDao.delete(incidence);
-		RequestDispatcher rd = getServletContext().getRequestDispatcher("/incidences");
+		RequestDispatcher rd = getServletContext().getRequestDispatcher("/incidencesList");
 		rd.forward(req, resp);
 	}
-	
 }

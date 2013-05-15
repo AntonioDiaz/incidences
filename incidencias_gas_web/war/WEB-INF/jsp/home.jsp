@@ -27,8 +27,8 @@
 	<ul>
 		<li><a href="gojsp?jsp_target=new_incidence.jsp">nueva incidencia</a></li>
 		<li><a href="home">lista dispositivos</a></li>
-		<li><a href="incidences">lista incidencias</a></li>
-		<li><a href="technician">técnicos registrados</a></li>
+		<li><a href="incidencesList">lista incidencias</a></li>
+		<li><a href="techniciansList">técnicos registrados</a></li>
 	</ul>
 </body>
 </html>

@@ -159,7 +159,7 @@
 	<table width="100%" cellpadding="0px" cellspacing="0px">
 		<tr>
 			<td valign="top">
-				<form action="createIncidence" id="new_incidence" method="post">
+				<form action="incidenceCreate" id="new_incidence" method="post">
 					<table cellpadding="0px" cellspacing="0px">
 						<tr height="50px">
 							<td>
