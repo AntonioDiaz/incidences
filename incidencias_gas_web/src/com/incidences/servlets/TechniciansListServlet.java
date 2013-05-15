@@ -19,7 +19,7 @@ public class TechniciansListServlet extends BaseServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 		TechnicianDao technicianDeviceDao = new TechnicianImpJdo();
 		req.setAttribute("technicians_list", technicianDeviceDao.getAllTechnicians());		
-		RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher(PATH_JSP + "/thecnicians.jsp");
+		RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher(PATH_JSP + "thecnicians_list.jsp");
 		requestDispatcher.forward(req, resp);
 	}
 	

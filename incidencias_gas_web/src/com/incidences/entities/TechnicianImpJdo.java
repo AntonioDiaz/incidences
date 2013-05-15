@@ -16,8 +16,10 @@ public class TechnicianImpJdo implements TechnicianDao {
 	public List<Technician> getAllTechnicians() {
 		List<Technician> technicians = null;
 		PersistenceManager pm = PMF.get().getPersistenceManager();
+		pm.refreshAll();
 		Query query = pm.newQuery(Technician.class);
 		try {
+			pm.refreshAll();
 			technicians = (List<Technician>) query.execute();
 		} finally {
 			pm.close();

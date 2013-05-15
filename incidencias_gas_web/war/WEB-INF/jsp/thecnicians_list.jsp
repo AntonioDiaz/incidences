@@ -22,7 +22,7 @@
 			<td><a href="/">inicio</a></td>
 		</tr>
 	</table>
-	<button onclick="window.location='gojsp?jsp_target=new_technician.jsp'"
+	<button onclick="window.location='gojsp?jsp_target=technicians_new.jsp'"
 		style="cursor: pointer;">nuevo</button>
 	<hr>
 	<table border="0px" cellpadding="0px" cellspacing="0px" width="90%"

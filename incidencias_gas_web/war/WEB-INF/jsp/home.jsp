@@ -15,7 +15,7 @@
 <body>
 	<table width="100%" cellpadding="0px" cellspacing="0px">
 		<tr>
-			<td><h1>Administración de incidencias:</h1></td>
+			<td><h1>Administración de incidencias</h1></td>
 			<td width="30%">
 				conectado con: <b><%=request.getUserPrincipal().getName()%></b> 
 				<a href="<%=userService.createLogoutURL("/")%>">desconectar</a> 
@@ -25,7 +25,7 @@
 	</table>
 	<h4>Menú</h4>
 	<ul>
-		<li><a href="gojsp?jsp_target=new_incidence.jsp">nueva incidencia</a></li>
+		<li><a href="gojsp?jsp_target=incidences_new.jsp">nueva incidencia</a></li>
 		<li><a href="home">lista dispositivos</a></li>
 		<li><a href="incidencesList">lista incidencias</a></li>
 		<li><a href="techniciansList">técnicos registrados</a></li>
