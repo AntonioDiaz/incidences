@@ -1,4 +1,4 @@
-package com.incidences;
+package com.incidences.servlets;
 
 import static com.google.appengine.api.taskqueue.TaskOptions.Builder.withUrl;
 

@@ -16,7 +16,7 @@
 	<table width="80%">
 		<tr>
 			<td>
-				<h1>Lista de Incidencias:</h1>			
+				<h1>Lista de dispositivos registrados:</h1>			
 			</td>
 			<td>
 				<a href="/">inicio</a>			

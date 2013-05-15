@@ -1,4 +1,4 @@
-package com.incidences;
+package com.incidences.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;

@@ -1,4 +1,4 @@
-package com.incidences;
+package com.incidences.servlets;
 
 import com.google.android.gcm.server.Constants;
 import com.google.android.gcm.server.Message;

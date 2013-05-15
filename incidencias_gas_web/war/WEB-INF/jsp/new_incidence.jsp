@@ -147,17 +147,14 @@
 	
 </head>
 <body onload="initialize()">
-		<table width="80%">
+	<table width="80%">
 		<tr>
 			<td>
-				<h1>Nueva incidencia</h1>			
+				<h1>Nueva incidencia</h1>
 			</td>
-			<td>
-				<a href="/">inicio</a>			
-			</td>
+			<td><a href="/">inicio</a></td>
 		</tr>
 	</table>
-
 	<hr>
 	<table width="100%" cellpadding="0px" cellspacing="0px">
 		<tr>

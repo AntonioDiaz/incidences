@@ -13,7 +13,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
  * Class that represents an incidence.
  * 
  * @author toni
- *
+ * 
  */
 
 @PersistenceCapable
@@ -22,20 +22,19 @@ public class Incidence {
 	@PrimaryKey
 	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
 	private Long id;
-	
-	
+
 	@Persistent
 	private String contactName;
-	
+
 	@Persistent
 	private String contactPhone;
-	
+
 	@Persistent
 	private String incidenceAddress;
-	
+
 	@Persistent
 	private String incidenceDesc;
-	
+
 	@Persistent
 	private Date incidenceDate;
 
@@ -99,15 +98,25 @@ public class Incidence {
 	public void setIncidenceDate(Date incidenceDate) {
 		this.incidenceDate = incidenceDate;
 	}
-	
-	public String getIncidenceAddressNoGPS(){
+
+	public String getIncidenceAddressNoGPS() {
 		Integer position = this.incidenceAddress.lastIndexOf("(");
-		position = position==-1?this.incidenceAddress.length():position;
+		position = position == -1 ? this.incidenceAddress.length() : position;
 		return this.incidenceAddress.substring(0, position);
 	}
-	
-    public String toString (){
-  	   return ToStringBuilder.reflectionToString(this);
-     }
-	
+
+	public String[] getGpsCoordinates() {
+		String[] gpsCoordinates = null;
+		Integer position = this.incidenceAddress.lastIndexOf("(");
+		if (position != -1) {
+			String substr = this.incidenceAddress.substring(position + 1, this.incidenceAddress.length());
+			gpsCoordinates = substr.split(", ");
+		}
+		return gpsCoordinates;
+	}
+
+	public String toString() {
+		return ToStringBuilder.reflectionToString(this);
+	}
+
 }

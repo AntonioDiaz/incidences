@@ -5,7 +5,7 @@
 		http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	version="2.5">
 	<listener>
-		<listener-class>com.incidences.ApiKeyInitializer</listener-class>
+		<listener-class>com.incidences.servlets.ApiKeyInitializer</listener-class>
 	</listener>
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
@@ -13,7 +13,7 @@
 
 	<servlet>
 		<servlet-name>RedirectJspServlet</servlet-name>
-		<servlet-class>com.incidences.RedirectJspServlet</servlet-class>
+		<servlet-class>com.incidences.servlets.RedirectJspServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>RedirectJspServlet</servlet-name>
@@ -22,7 +22,7 @@
 
 	<servlet>
 		<servlet-name>RegisterServlet</servlet-name>
-		<servlet-class>com.incidences.RegisterServlet</servlet-class>
+		<servlet-class>com.incidences.servlets.RegisterServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet-mapping>
@@ -31,7 +31,7 @@
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>UnregisterServlet</servlet-name>
-		<servlet-class>com.incidences.UnregisterServlet</servlet-class>
+		<servlet-class>com.incidences.servlets.UnregisterServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet-mapping>
@@ -40,7 +40,7 @@
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>SendAllMessagesServlet</servlet-name>
-		<servlet-class>com.incidences.SendAllMessagesServlet</servlet-class>
+		<servlet-class>com.incidences.servlets.SendAllMessagesServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet-mapping>
@@ -49,7 +49,7 @@
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>HomeServlet</servlet-name>
-		<servlet-class>com.incidences.HomeServlet</servlet-class>
+		<servlet-class>com.incidences.servlets.HomeServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet-mapping>
@@ -58,7 +58,7 @@
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>DevicesServlet</servlet-name>
-		<servlet-class>com.incidences.DevicesServlet</servlet-class>
+		<servlet-class>com.incidences.servlets.DevicesServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>DevicesServlet</servlet-name>
@@ -67,7 +67,7 @@
 
 	<servlet>
 		<servlet-name>IncidencesListServlet</servlet-name>
-		<servlet-class>com.incidences.IncidencesListServlet</servlet-class>
+		<servlet-class>com.incidences.servlets.IncidencesListServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>IncidencesListServlet</servlet-name>
@@ -76,7 +76,7 @@
 
 	<servlet>
 		<servlet-name>SendMessageServlet</servlet-name>
-		<servlet-class>com.incidences.SendMessageServlet</servlet-class>
+		<servlet-class>com.incidences.servlets.SendMessageServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 
@@ -87,7 +87,7 @@
 
 	<servlet>
 	    <servlet-name>CreateIncidenceServlet</servlet-name>
-		<servlet-class>com.incidences.CreateIncidenceServlet</servlet-class>	    
+		<servlet-class>com.incidences.servlets.CreateIncidenceServlet</servlet-class>	    
 	</servlet>
 	<servlet-mapping>
 	    <servlet-name>CreateIncidenceServlet</servlet-name>
@@ -96,7 +96,7 @@
 	
 	<servlet>
 	    <servlet-name>DeleteIncidenceServlet</servlet-name>
-		<servlet-class>com.incidences.DeleteIncidenceServlet</servlet-class>	    
+		<servlet-class>com.incidences.servlets.DeleteIncidenceServlet</servlet-class>	    
 	</servlet>
 	<servlet-mapping>
 	    <servlet-name>DeleteIncidenceServlet</servlet-name>
@@ -105,10 +105,28 @@
 	
 	<servlet>
 	    <servlet-name>IncidencesListJsonServlet</servlet-name>
-		<servlet-class>com.incidences.IncidencesListJsonServlet</servlet-class>	    
+		<servlet-class>com.incidences.servlets.IncidencesListJsonServlet</servlet-class>	    
 	</servlet>
 	<servlet-mapping>
 	    <servlet-name>IncidencesListJsonServlet</servlet-name>
 	    <url-pattern>/incidencesJson</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+	    <servlet-name>TechnicianServlet</servlet-name>
+		<servlet-class>com.incidences.servlets.TechnicianServlet</servlet-class>	    
+	</servlet>
+	<servlet-mapping>
+	    <servlet-name>TechnicianServlet</servlet-name>
+	    <url-pattern>/technician</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+	    <servlet-name>TechnicianNewServlet</servlet-name>
+		<servlet-class>com.incidences.servlets.TechnicianNewServlet</servlet-class>	    
+	</servlet>
+	<servlet-mapping>
+	    <servlet-name>TechnicianNewServlet</servlet-name>
+	    <url-pattern>/createTechnician</url-pattern>
 	</servlet-mapping>
 </web-app>
