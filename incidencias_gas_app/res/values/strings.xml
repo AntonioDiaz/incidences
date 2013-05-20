@@ -20,8 +20,8 @@
     <string name="options_exit">Exit</string>
     <string name="button_show_list">Incidencias</string>
     <string name="button_show_list_pending">Incidencias pendientes</string>
-    <string name="incidences_list">Lista de incidencias:</string>
-    <string name="incidence_detail">Detalle de la incidencia:</string>
+    <string name="incidences_list">Lista de incidencias</string>
+    <string name="incidence_pending">Pendiente</string>
     <string name="temp"></string>
     
     
@@ -32,5 +32,6 @@
     <string name="incidence_address">Dirección: </string>
     <string name="incidence_desc">Descripción: </string>
     <string name="incidence_call">Llamar</string>
+    <string name="incidence_accept">Aceptar</string>
     <string name="incidence_map">Mapa</string>
 </resources>

@@ -4,6 +4,10 @@ import static com.google.android.gcm.demo.app.CommonUtilities.DISPLAY_MESSAGE_AC
 import static com.google.android.gcm.demo.app.CommonUtilities.EXTRA_MESSAGE;
 import static com.google.android.gcm.demo.app.CommonUtilities.SENDER_ID;
 import static com.google.android.gcm.demo.app.CommonUtilities.SERVER_URL;
+
+import java.util.Timer;
+import java.util.TimerTask;
+
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -30,7 +34,11 @@ public class DemoActivity extends Activity {
 	TextView mDisplay;
 	AsyncTask<Void, Void, Void> mRegisterTask;
 	private Context mContext;
-
+	private TimerTask myTimerTask;
+	private Timer timer;
+	public static final Integer TIMER_TASK_PERIOD = 10000;
+	public static final Integer TIMER_TASK_DELAY = 3000;
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -57,7 +65,6 @@ public class DemoActivity extends Activity {
 				 * It's also necessary to cancel the thread onDestroy(), hence the use of AsyncTask instead of a raw thread. */
 				final Context context = this;
 				mRegisterTask = new AsyncTask<Void, Void, Void>() {
-
 					@Override
 					protected Void doInBackground(Void... params) {
 						TelephonyManager telephonyManager = (TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
@@ -85,6 +92,11 @@ public class DemoActivity extends Activity {
 		button.setOnClickListener(this.createShowListListener());
 		button = (Button)findViewById(R.id.show_list_pending_button);
 		button.setOnClickListener(this.createShowListListener());
+		timer = new Timer();
+		myTimerTask = new UpdatePositionTimerTask(mContext);
+		timer.schedule(myTimerTask, TIMER_TASK_DELAY, TIMER_TASK_PERIOD);
+		
+		
 	}
 
 	private OnClickListener createShowListListener() {
