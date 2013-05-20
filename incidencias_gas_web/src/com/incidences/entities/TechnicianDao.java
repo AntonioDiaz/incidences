@@ -5,9 +5,13 @@ import java.util.List;
 public interface TechnicianDao {
 
 	public List<Technician> getAllTechnicians();
+
+	public Technician create(Technician technician);
+
+	public void delete(Technician technician);
 	
-	public Technician create(Technician technicianDeviced);
-	
-	public void delete(Technician technicianDeviced);
-	
+	public void updateTechnician(String idAccount, Technician technician);
+
+	public Technician getTechnician(String key);
+
 }

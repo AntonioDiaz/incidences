@@ -28,7 +28,6 @@
 	<table border="0px" cellpadding="0px" cellspacing="0px" width="90%"
 		class="listStyle">
 		<tr style="font-weight: bold;">
-			<td>id</td>
 			<td>google id</td>
 			<td>nombre</td>
 			<td>teléfono</td>
@@ -38,7 +37,6 @@
 		</tr>
 		<c:forEach items="${technicians_list}" var="myTechnician">
 			<tr>
-				<td><c:out value="${myTechnician.id}"></c:out><br></td>
 				<td><c:out value="${myTechnician.googleAccountId}"></c:out><br></td>
 				<td><c:out value="${myTechnician.name}"></c:out><br></td>
 				<td><c:out value="${myTechnician.phoneNumber}"></c:out><br></td>
@@ -46,9 +44,13 @@
 				<td><c:out value="${myTechnician.gpsFormated}"></c:out><br></td>
 				<td>
 					<c:url value="/deleteTechnician" var="deleteLink">
-						<c:param name="key" value="${myTechnician.id}" />
+						<c:param name="key" value="${myTechnician.googleAccountId}" />
 					</c:url> 
 					<a href='<c:out value="${deleteLink}" escapeXml="true"/>'>borrar</a>
+					<c:url value="/updateTechnician" var="updateLink">
+						<c:param name="key" value="${myTechnician.googleAccountId}" />
+					</c:url> 
+					<a href='<c:out value="${updateLink}" escapeXml="true"/>'>modificar</a>
 				</td>
 			</tr>
 		</c:forEach>

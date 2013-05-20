@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.incidences.entities.TechnicianDao;
-import com.incidences.entities.TechnicianImpJdo;
+import com.incidences.entities.TechnicianDaoImpJdo;
 
 
 public class TechniciansListServlet extends BaseServlet {
@@ -17,9 +17,9 @@ public class TechniciansListServlet extends BaseServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-		TechnicianDao technicianDeviceDao = new TechnicianImpJdo();
+		TechnicianDao technicianDeviceDao = new TechnicianDaoImpJdo();
 		req.setAttribute("technicians_list", technicianDeviceDao.getAllTechnicians());		
-		RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher(PATH_JSP + "thecnicians_list.jsp");
+		RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher(PATH_JSP + "technicians_list.jsp");
 		requestDispatcher.forward(req, resp);
 	}
 	

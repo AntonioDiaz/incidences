@@ -138,4 +138,30 @@
 		<servlet-name>TechnicianDeleteServlet</servlet-name>
 		<url-pattern>/deleteTechnician</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>UpdateLocationServlet</servlet-name>
+		<servlet-class>com.incidences.servlets.UpdateLocationServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UpdateLocationServlet</servlet-name>
+		<url-pattern>/updateLocation</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>TechnicianUpdateServlet</servlet-name>
+		<servlet-class>com.incidences.servlets.TechnicianUpdateServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>TechnicianUpdateServlet</servlet-name>
+		<url-pattern>/updateTechnician</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>TechnicianSaveUpdateServlet</servlet-name>
+		<servlet-class>com.incidences.servlets.TechnicianSaveUpdateServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>TechnicianSaveUpdateServlet</servlet-name>
+		<url-pattern>/saveUpdateTechnician</url-pattern>
+	</servlet-mapping>
 </web-app>

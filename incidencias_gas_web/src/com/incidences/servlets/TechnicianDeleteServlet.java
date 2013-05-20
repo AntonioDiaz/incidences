@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.incidences.entities.Technician;
 import com.incidences.entities.TechnicianDao;
-import com.incidences.entities.TechnicianImpJdo;
+import com.incidences.entities.TechnicianDaoImpJdo;
 
 public class TechnicianDeleteServlet extends BaseServlet {
 
@@ -17,10 +17,10 @@ public class TechnicianDeleteServlet extends BaseServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-		TechnicianDao technicianDao = new TechnicianImpJdo();
+		TechnicianDao technicianDao = new TechnicianDaoImpJdo();
 		String key = getParameter(req, "key");
 		Technician technician = new Technician();
-		technician.setId(Long.parseLong(key));
+		technician.setGoogleAccountId(key);
 		technicianDao.delete(technician);
 		RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/techniciansList");
 		requestDispatcher.forward(req, resp);		

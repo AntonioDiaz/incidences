@@ -9,7 +9,7 @@ import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
 import com.incidences.persistence.PMF;
 
-public class TechnicianImpJdo implements TechnicianDao {
+public class TechnicianDaoImpJdo implements TechnicianDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -19,7 +19,6 @@ public class TechnicianImpJdo implements TechnicianDao {
 		pm.refreshAll();
 		Query query = pm.newQuery(Technician.class);
 		try {
-			pm.refreshAll();
 			technicians = (List<Technician>) query.execute();
 		} finally {
 			pm.close();
@@ -42,14 +41,38 @@ public class TechnicianImpJdo implements TechnicianDao {
 	@Override
 	public void delete(Technician technician) {
 		PersistenceManager pm = PMF.get().getPersistenceManager();
-		Key key = KeyFactory.createKey(Technician.class.getSimpleName(), technician.getId());
+		Key key = KeyFactory.createKey(Technician.class.getSimpleName(), technician.getGoogleAccountId());
 		Technician technicianToDelete = pm.getObjectById(Technician.class, key);
 		try {
 			pm.deletePersistent(technicianToDelete);
-			pm.refreshAll();
-			//pm.currentTransaction().commit();
-		} finally  {
+		} finally {
 			pm.close();
-		}		
+		}
+	}
+
+	@Override
+	public Technician getTechnician(String idAccount) {
+		PersistenceManager pm = PMF.get().getPersistenceManager();
+		Key key = KeyFactory.createKey(Technician.class.getSimpleName(), idAccount);
+		Technician technicianToDelete = null;
+		try {
+			technicianToDelete = pm.getObjectById(Technician.class, key);
+		} finally {
+			pm.close();
+		}
+		return technicianToDelete;
+	}
+
+	@Override
+	public void updateTechnician(String idAccount, Technician technician) {
+		PersistenceManager pm = PMF.get().getPersistenceManager();
+		Key key = KeyFactory.createKey(Technician.class.getSimpleName(), idAccount);
+		try {
+			Technician technicianToUpdate = pm.getObjectById(Technician.class, key);
+			technicianToUpdate.setName(technician.getName());
+			technicianToUpdate.setPhoneNumber(technician.getPhoneNumber());
+		} finally {
+			pm.close();
+		}
 	}
 }

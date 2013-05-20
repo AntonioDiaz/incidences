@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.incidences.entities.Technician;
 import com.incidences.entities.TechnicianDao;
-import com.incidences.entities.TechnicianImpJdo;
+import com.incidences.entities.TechnicianDaoImpJdo;
 
 public class TechnicianCreateServlet extends BaseServlet {
 
@@ -17,7 +17,7 @@ public class TechnicianCreateServlet extends BaseServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-		TechnicianDao technicianDeviceDao = new TechnicianImpJdo();
+		TechnicianDao technicianDeviceDao = new TechnicianDaoImpJdo();
 		String googleAccountId = getParameter(req, "id_account");
 		String name = getParameter(req, "name");
 		String phoneNumber = getParameter(req, "phone");

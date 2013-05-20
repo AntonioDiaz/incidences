@@ -30,9 +30,6 @@ public class Technician {
 	
 	@PrimaryKey
 	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
-	private Long id;
-
-	@Persistent
 	private String googleAccountId;
 
 	@Persistent
@@ -99,14 +96,6 @@ public class Technician {
 
 	public void setLastRegistrationDate(Date lastRegistrationDate) {
 		this.lastRegistrationDate = lastRegistrationDate;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public Long getId() {
-		return id;
 	}
 
 	public String getRegistrationGcmId() {
