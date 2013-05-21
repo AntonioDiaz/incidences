@@ -19,7 +19,7 @@ public interface IncidencesDao {
 	 * 
 	 * @return
 	 */
-	public Incidence create(Incidence incidence);
+	public Incidence create(Incidence incidence, Technician technician);
 	
 	
 	/**

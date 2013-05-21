@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.appengine.api.datastore.KeyFactory;
 import com.incidences.entities.Incidence;
 import com.incidences.entities.IncidencesDao;
 import com.incidences.entities.IncidencesDaoImplJdo;
@@ -25,7 +26,7 @@ public class IncidenceDeleteServlet extends BaseServlet {
 		IncidencesDao incidencesDao = new IncidencesDaoImplJdo();
 		String keyStr = getParameter(req, "key");
 		Incidence incidence = new Incidence();
-		incidence.setId(Long.parseLong(keyStr));
+		incidence.setKey(KeyFactory.stringToKey(keyStr));
 		incidencesDao.delete(incidence);
 		RequestDispatcher rd = getServletContext().getRequestDispatcher("/incidencesList");
 		rd.forward(req, resp);

@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.appengine.api.datastore.KeyFactory;
 import com.incidences.entities.Technician;
 import com.incidences.entities.TechnicianDao;
 import com.incidences.entities.TechnicianDaoImpJdo;
@@ -18,9 +19,9 @@ public class TechnicianDeleteServlet extends BaseServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 		TechnicianDao technicianDao = new TechnicianDaoImpJdo();
-		String key = getParameter(req, "key");
+		String keyStr = getParameter(req, "key");
 		Technician technician = new Technician();
-		technician.setGoogleAccountId(key);
+		technician.setKey(KeyFactory.stringToKey(keyStr));
 		technicianDao.delete(technician);
 		RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/techniciansList");
 		requestDispatcher.forward(req, resp);		

@@ -9,6 +9,9 @@ import javax.jdo.annotations.PrimaryKey;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
+import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.KeyFactory;
+
 /**
  * Class that represents an incidence.
  * 
@@ -21,7 +24,7 @@ public class Incidence {
 
 	@PrimaryKey
 	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
-	private Long id;
+	private Key key;
 
 	@Persistent
 	private String contactName;
@@ -34,6 +37,9 @@ public class Incidence {
 
 	@Persistent
 	private String incidenceDesc;
+
+	@Persistent
+	private Technician technician;
 
 	@Persistent
 	private Date incidenceDate;
@@ -49,14 +55,6 @@ public class Incidence {
 
 	public Incidence() {
 		super();
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 	public String getContactName() {
@@ -117,6 +115,26 @@ public class Incidence {
 
 	public String toString() {
 		return ToStringBuilder.reflectionToString(this);
+	}
+
+	public Technician getTechnician() {
+		return technician;
+	}
+
+	public void setTechnician(Technician technician) {
+		this.technician = technician;
+	}
+
+	public Key getKey() {
+		return key;
+	}
+
+	public void setKey(Key key) {
+		this.key = key;
+	}
+	
+	public String getKeyStr(){
+		return KeyFactory.keyToString(key);
 	}
 
 }

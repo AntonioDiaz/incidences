@@ -1,25 +1,25 @@
 package com.incidences.entities;
+
 import java.util.List;
 
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
+import javax.jdo.Transaction;
 
-import com.google.appengine.api.datastore.Key;
-import com.google.appengine.api.datastore.KeyFactory;
 import com.incidences.persistence.PMF;
 
 /**
  * 
  * @author toni
  * 
- * Implementation of IncidencesDao.
+ *         Implementation of IncidencesDao.
  */
 public class IncidencesDaoImplJdo implements IncidencesDao {
 
-	public IncidencesDaoImplJdo(){
+	public IncidencesDaoImplJdo() {
 		super();
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Incidence> allIncicendesList() {
@@ -27,7 +27,7 @@ public class IncidencesDaoImplJdo implements IncidencesDao {
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		Query query = pm.newQuery(Incidence.class);
 		try {
-			incidences = (List<Incidence>)query.execute();
+			incidences = (List<Incidence>) query.execute();
 		} finally {
 			pm.close();
 		}
@@ -35,11 +35,17 @@ public class IncidencesDaoImplJdo implements IncidencesDao {
 	}
 
 	@Override
-	public Incidence create(Incidence incidence) {
+	public Incidence create(Incidence incidence, Technician technician) {
 		Incidence incidenceSaved = null;
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		try {
+			Transaction transaction = pm.currentTransaction();
+			transaction.begin();
+			if (technician != null) {
+				incidence.setTechnician(technician);
+			}
 			incidenceSaved = pm.makePersistent(incidence);
+			transaction.commit();
 		} finally {
 			pm.close();
 		}
@@ -49,12 +55,11 @@ public class IncidencesDaoImplJdo implements IncidencesDao {
 	@Override
 	public void delete(Incidence incidence) {
 		PersistenceManager pm = PMF.get().getPersistenceManager();
-		Key key = KeyFactory.createKey(Incidence.class.getSimpleName(), incidence.getId());
-		Incidence toDelete = pm.getObjectById(Incidence.class, key);
+		Incidence toDelete = pm.getObjectById(Incidence.class, incidence.getKey());
 		try {
 			pm.deletePersistent(toDelete);
 		} finally {
 			pm.close();
-		}		
+		}
 	}
 }

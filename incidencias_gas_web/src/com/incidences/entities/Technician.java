@@ -1,7 +1,9 @@
 package com.incidences.entities;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.PersistenceCapable;
@@ -9,6 +11,9 @@ import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
+
+import com.google.appengine.api.datastore.Key;
+import com.google.appengine.api.datastore.KeyFactory;
 
 /**
  * 
@@ -20,17 +25,21 @@ public class Technician {
 
 	public Technician(String googleAccountId, String name, String phoneNumber) {
 		super();
+		this.key = KeyFactory.createKey(Technician.class.getSimpleName(), googleAccountId);
 		this.googleAccountId = googleAccountId;
 		this.name = name;
 		this.phoneNumber = phoneNumber;
 	}
 
-	public Technician(){
+	public Technician() {
 		super();
 	}
-	
+
 	@PrimaryKey
 	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
+	private Key key;
+
+	@Persistent
 	private String googleAccountId;
 
 	@Persistent
@@ -50,6 +59,9 @@ public class Technician {
 
 	@Persistent
 	private String registrationGcmId;
+
+	@Persistent(mappedBy = "technician")
+	private List<Incidence> incidencesList = new ArrayList<Incidence>();
 
 	public String getGoogleAccountId() {
 		return googleAccountId;
@@ -110,9 +122,9 @@ public class Technician {
 	public String getGpsFormated() {
 		String gpsFormated = "";
 		if (latitude != null && longitude != null) {
-			DecimalFormat df = new DecimalFormat("###.######");		
-			String myLatitude =  df.format(Double.parseDouble(latitude)); 
-			String myLongitude =  df.format(Double.parseDouble(longitude)); 	
+			DecimalFormat df = new DecimalFormat("###.######");
+			String myLatitude = df.format(Double.parseDouble(latitude));
+			String myLongitude = df.format(Double.parseDouble(longitude));
 			gpsFormated = "(" + myLatitude + ", " + myLongitude + ")";
 		}
 		return gpsFormated;
@@ -122,4 +134,24 @@ public class Technician {
 		return ToStringBuilder.reflectionToString(this);
 	}
 
+	public List<Incidence> getIncidencesList() {
+		return incidencesList;
+	}
+
+	public void setIncidencesList(List<Incidence> incidencesList) {
+		this.incidencesList = incidencesList;
+	}
+
+	public Key getKey() {
+		return key;
+	}
+
+	public void setKey(Key key) {
+		this.key = key;
+	}
+
+	public String getKeyStr(){
+		return KeyFactory.keyToString(key);
+	}
+	
 }

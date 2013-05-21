@@ -25,7 +25,7 @@
 	</table>
 	<h4>Menú</h4>
 	<ul>
-		<li><a href="gojsp?jsp_target=incidences_new.jsp">nueva incidencia</a></li>
+		<li><a href="incidenceNew">nueva incidencia</a></li>
 		<li><a href="home">lista dispositivos</a></li>
 		<li><a href="incidencesList">lista incidencias</a></li>
 		<li><a href="techniciansList">técnicos registrados</a></li>

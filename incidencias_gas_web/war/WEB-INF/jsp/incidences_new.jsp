@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -191,6 +192,19 @@
 							</td>				
 							<td>
 								<textarea id="incidence_details" name="incidence_details" rows="4" cols="50"></textarea>
+							</td>
+						</tr>
+						<tr height="50px">
+							<td valign="top">
+								Técnico:
+							</td>				
+							<td valign="top">
+								<select id="technician" name="technician">
+									<option value=""></option>
+									<c:forEach items="${technicians_list}" var="myTechnician">
+										<option value='<c:out value="${myTechnician.keyStr}"></c:out>'><c:out value="${myTechnician.name}"></c:out></option>									
+									</c:forEach>
+								</select>			
 							</td>
 						</tr>
 						<tr>

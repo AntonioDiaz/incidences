@@ -7,7 +7,6 @@ import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
 import com.google.appengine.api.datastore.Key;
-import com.google.appengine.api.datastore.KeyFactory;
 import com.incidences.persistence.PMF;
 
 public class TechnicianDaoImpJdo implements TechnicianDao {
@@ -42,8 +41,7 @@ public class TechnicianDaoImpJdo implements TechnicianDao {
 	@Override
 	public void delete(Technician technician) {
 		PersistenceManager pm = PMF.get().getPersistenceManager();
-		Key key = KeyFactory.createKey(Technician.class.getSimpleName(), technician.getGoogleAccountId());
-		Technician technicianToDelete = pm.getObjectById(Technician.class, key);
+		Technician technicianToDelete = pm.getObjectById(Technician.class, technician.getKey());
 		try {
 			pm.deletePersistent(technicianToDelete);
 		} finally {
@@ -52,9 +50,8 @@ public class TechnicianDaoImpJdo implements TechnicianDao {
 	}
 
 	@Override
-	public Technician getTechnician(String idAccount) {
+	public Technician getTechnician(Key key) {
 		PersistenceManager pm = PMF.get().getPersistenceManager();
-		Key key = KeyFactory.createKey(Technician.class.getSimpleName(), idAccount);
 		Technician technicianToDelete = null;
 		try {
 			technicianToDelete = pm.getObjectById(Technician.class, key);
@@ -65,9 +62,8 @@ public class TechnicianDaoImpJdo implements TechnicianDao {
 	}
 
 	@Override
-	public void updateTechnician(String idAccount, Technician technician) {
+	public void updateTechnician(Key key, Technician technician) {
 		PersistenceManager pm = PMF.get().getPersistenceManager();
-		Key key = KeyFactory.createKey(Technician.class.getSimpleName(), idAccount);
 		try {
 			Technician technicianToUpdate = pm.getObjectById(Technician.class, key);
 			technicianToUpdate.setName(technician.getName());

@@ -86,6 +86,15 @@
 	</servlet-mapping>
 
 	<servlet>
+		<servlet-name>IncidenceNewServlet</servlet-name>
+		<servlet-class>com.incidences.servlets.IncidenceNewServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>IncidenceNewServlet</servlet-name>
+		<url-pattern>/incidenceNew</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
 		<servlet-name>IncidenceCreateServlet</servlet-name>
 		<servlet-class>com.incidences.servlets.IncidenceCreateServlet</servlet-class>
 	</servlet>
