@@ -1,5 +1,6 @@
 package com.incidences.entities;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.jdo.PersistenceManager;
@@ -71,6 +72,11 @@ public class TechnicianDaoImpJdo implements TechnicianDao {
 			Technician technicianToUpdate = pm.getObjectById(Technician.class, key);
 			technicianToUpdate.setName(technician.getName());
 			technicianToUpdate.setPhoneNumber(technician.getPhoneNumber());
+			if (technician.getLongitude()!=null && technician.getLatitude()!=null) {
+				technicianToUpdate.setLongitude(technician.getLongitude());
+				technicianToUpdate.setLatitude(technician.getLatitude());
+				technicianToUpdate.setLastRegistrationDate(new Date());
+			}
 		} finally {
 			pm.close();
 		}

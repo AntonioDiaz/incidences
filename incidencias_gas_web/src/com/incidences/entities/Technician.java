@@ -1,5 +1,6 @@
 package com.incidences.entities;
 
+import java.text.DecimalFormat;
 import java.util.Date;
 
 import javax.jdo.annotations.IdGeneratorStrategy;
@@ -109,7 +110,10 @@ public class Technician {
 	public String getGpsFormated() {
 		String gpsFormated = "";
 		if (latitude != null && longitude != null) {
-			gpsFormated = "(" + latitude + "," + longitude + ")";
+			DecimalFormat df = new DecimalFormat("###.######");		
+			String myLatitude =  df.format(Double.parseDouble(latitude)); 
+			String myLongitude =  df.format(Double.parseDouble(longitude)); 	
+			gpsFormated = "(" + myLatitude + ", " + myLongitude + ")";
 		}
 		return gpsFormated;
 	}

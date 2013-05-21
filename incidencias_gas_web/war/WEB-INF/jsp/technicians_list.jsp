@@ -40,7 +40,7 @@
 				<td><c:out value="${myTechnician.googleAccountId}"></c:out><br></td>
 				<td><c:out value="${myTechnician.name}"></c:out><br></td>
 				<td><c:out value="${myTechnician.phoneNumber}"></c:out><br></td>
-				<td><fmt:formatDate value="${myTechnician.lastRegistrationDate}" pattern="yyyy-MM-dd" /><br></td>
+				<td><fmt:formatDate value="${myTechnician.lastRegistrationDate}" pattern="dd/MM/yyyy hh:mm"/><br></td>
 				<td><c:out value="${myTechnician.gpsFormated}"></c:out><br></td>
 				<td>
 					<c:url value="/deleteTechnician" var="deleteLink">
