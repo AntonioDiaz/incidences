@@ -32,6 +32,7 @@
 			<td>teléfono</td>
 			<td>último registro</td>
 			<td>GPS</td>
+			<td>incidencias</td>
 			<td>&nbsp;</td>
 		</tr>
 		<c:forEach items="${technicians_list}" var="myTechnician">
@@ -41,6 +42,7 @@
 				<td><c:out value="${myTechnician.phoneNumber}"></c:out><br></td>
 				<td><fmt:formatDate value="${myTechnician.lastRegistrationDate}" pattern="dd/MM/yyyy hh:mm"/><br></td>
 				<td><c:out value="${myTechnician.gpsFormated}"></c:out><br></td>
+				<td><c:out value="${myTechnician.incidencesList}"></c:out><br></td>
 				<td>
 					<c:url value="/deleteTechnician" var="deleteLink">
 						<c:param name="key" value="${myTechnician.keyStr}" />

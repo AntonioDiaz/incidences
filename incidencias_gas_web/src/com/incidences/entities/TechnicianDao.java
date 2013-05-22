@@ -16,4 +16,6 @@ public interface TechnicianDao {
 
 	public Technician getTechnician(Key key);
 
+	public Technician updateTechnicianAddIncidence(Key key, Incidence incidence);
+
 }

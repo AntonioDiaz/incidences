@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
+import javax.jdo.Transaction;
 
 import com.google.appengine.api.datastore.Key;
 import com.incidences.persistence.PMF;
@@ -77,4 +78,24 @@ public class TechnicianDaoImpJdo implements TechnicianDao {
 			pm.close();
 		}
 	}
+	
+	@Override
+	public Technician updateTechnicianAddIncidence(Key key, Incidence incidence) {
+		Technician technicianToUpdate = null;
+		PersistenceManager pm = PMF.get().getPersistenceManager();
+		Transaction transaction = pm.currentTransaction();
+		try {
+			transaction.begin();
+			technicianToUpdate = pm.getObjectById(Technician.class, key);
+			technicianToUpdate.getIncidencesList().add(incidence);
+			transaction.commit();
+		} finally {
+			if (transaction.isActive()) {
+				transaction.rollback();
+			}
+			pm.close();
+		}
+		return technicianToUpdate;
+	}
+	
 }

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.jdo.annotations.Element;
 import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
@@ -20,7 +21,7 @@ import com.google.appengine.api.datastore.KeyFactory;
  * @author toni Class that represents an device of a technician.
  */
 
-@PersistenceCapable
+@PersistenceCapable(detachable = "true") 
 public class Technician {
 
 	public Technician(String googleAccountId, String name, String phoneNumber) {
@@ -60,7 +61,8 @@ public class Technician {
 	@Persistent
 	private String registrationGcmId;
 
-	@Persistent(mappedBy = "technician")
+	@Persistent(mappedBy = "technician", defaultFetchGroup = "true")
+	@Element(dependent = "true")
 	private List<Incidence> incidencesList = new ArrayList<Incidence>();
 
 	public String getGoogleAccountId() {

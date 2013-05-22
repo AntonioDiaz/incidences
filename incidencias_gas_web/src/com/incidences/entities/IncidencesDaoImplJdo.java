@@ -25,9 +25,10 @@ public class IncidencesDaoImplJdo implements IncidencesDao {
 	public List<Incidence> allIncicendesList() {
 		List<Incidence> incidences = null;
 		PersistenceManager pm = PMF.get().getPersistenceManager();
-		Query query = pm.newQuery(Incidence.class);
+		final Query query = pm.newQuery(Incidence.class);
 		try {
 			incidences = (List<Incidence>) query.execute();
+			incidences.size();
 		} finally {
 			pm.close();
 		}
@@ -35,18 +36,18 @@ public class IncidencesDaoImplJdo implements IncidencesDao {
 	}
 
 	@Override
-	public Incidence create(Incidence incidence, Technician technician) {
+	public Incidence create(Incidence incidence) {
 		Incidence incidenceSaved = null;
 		PersistenceManager pm = PMF.get().getPersistenceManager();
+		Transaction transaction = pm.currentTransaction();
 		try {
-			Transaction transaction = pm.currentTransaction();
 			transaction.begin();
-			if (technician != null) {
-				incidence.setTechnician(technician);
-			}
 			incidenceSaved = pm.makePersistent(incidence);
 			transaction.commit();
 		} finally {
+			if (transaction.isActive()) {
+				transaction.rollback();
+			}
 			pm.close();
 		}
 		return incidenceSaved;

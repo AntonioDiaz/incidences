@@ -2,6 +2,7 @@ package com.incidences.entities;
 
 import java.util.Date;
 
+import javax.jdo.annotations.Element;
 import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
@@ -19,7 +20,7 @@ import com.google.appengine.api.datastore.KeyFactory;
  * 
  */
 
-@PersistenceCapable
+@PersistenceCapable(detachable = "true") 
 public class Incidence {
 
 	@PrimaryKey
@@ -38,7 +39,7 @@ public class Incidence {
 	@Persistent
 	private String incidenceDesc;
 
-	@Persistent
+	@Persistent (defaultFetchGroup = "true")
 	private Technician technician;
 
 	@Persistent

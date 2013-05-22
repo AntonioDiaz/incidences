@@ -1,12 +1,14 @@
 package com.incidences.servlets;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.incidences.entities.Incidence;
 import com.incidences.entities.IncidencesDao;
 import com.incidences.entities.IncidencesDaoImplJdo;
 
@@ -23,7 +25,8 @@ public class IncidencesListServlet extends BaseServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 		IncidencesDao incidencesDao = new IncidencesDaoImplJdo();
-		req.setAttribute("incidences_list", incidencesDao.allIncicendesList());
+		List<Incidence> allIncicendesList = incidencesDao.allIncicendesList();
+		req.setAttribute("incidences_list", allIncicendesList);
 		RequestDispatcher rd = getServletContext().getRequestDispatcher(PATH_JSP + "incidences_list.jsp");
 		rd.forward(req, resp);
 	}
