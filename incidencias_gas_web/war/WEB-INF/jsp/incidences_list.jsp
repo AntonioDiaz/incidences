@@ -25,7 +25,8 @@
 	</table>
 	<hr>
 	<table border="0px" cellpadding="0px" cellspacing="0px" width="90%" class="listStyle">
-		<tr style="font-weight: bold;">
+		<tr style="font-weight: bold;">		
+			<td>id</td>
 			<td>fecha</td>
 			<td>contacto</td>
 			<td>teléfono</td>
@@ -36,12 +37,13 @@
 		</tr>
 		<c:forEach items="${incidences_list}" var="myIncidence">
 			<tr>
+				<td><c:out value="${myIncidence.idAux}"></c:out><br></td>
 				<td><fmt:formatDate pattern="dd/MM/yyyy hh:mm" value="${myIncidence.incidenceDate}"/></td>
 				<td><c:out value="${myIncidence.contactName}"></c:out><br></td>
 				<td><c:out value="${myIncidence.contactPhone}"></c:out><br></td>
 				<td><c:out value="${myIncidence.incidenceAddressNoGPS}"></c:out><br></td>
 				<td><c:out value="${myIncidence.incidenceDesc}"></c:out><br></td>
-				<td><c:out value="${myIncidence.technician}"></c:out><br></td>
+				<td><c:out value="${myIncidence.technician.googleAccountId}"></c:out><br></td>
 				<td>
 					<c:url value="/incidenceDelete" var="deleteLink">
 						<c:param name="key" value="${myIncidence.keyStr}"/>

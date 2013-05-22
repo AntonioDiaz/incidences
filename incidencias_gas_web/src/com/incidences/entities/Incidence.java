@@ -2,7 +2,6 @@ package com.incidences.entities;
 
 import java.util.Date;
 
-import javax.jdo.annotations.Element;
 import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
@@ -44,6 +43,9 @@ public class Incidence {
 
 	@Persistent
 	private Date incidenceDate;
+	
+	@Persistent(valueStrategy = IdGeneratorStrategy.SEQUENCE)
+	private Long idAux;
 
 	public Incidence(String contactName, String contactPhone, String incidenceAddress, String incidenceDesc) {
 		super();
@@ -124,6 +126,14 @@ public class Incidence {
 
 	public void setTechnician(Technician technician) {
 		this.technician = technician;
+	}
+
+	public Long getIdAux() {
+		return idAux;
+	}
+
+	public void setIdAux(Long idAux) {
+		this.idAux = idAux;
 	}
 
 	public Key getKey() {

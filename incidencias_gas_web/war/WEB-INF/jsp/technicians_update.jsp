@@ -19,6 +19,7 @@
 		<tr>
 			<td valign="top">
 				<form action="saveUpdateTechnician" id="update_technician" method="post">
+					<input type="hidden" id="key" name="key" value='<c:out value="${technicianToModify.keyStr}"/>'>
 					<table cellpadding="0px" cellspacing="0px">
 						<tr height="50px">
 							<td>

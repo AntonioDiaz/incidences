@@ -27,7 +27,7 @@ public class IncidenceCreateServlet extends BaseServlet {
 	private static final long serialVersionUID = 1L;
 
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {		
 		IncidencesDao incidencesDao = new IncidencesDaoImplJdo();
 		TechnicianDao technicianDao = new TechnicianDaoImpJdo();
 		String contactName = getParameter(req, "contact_name");

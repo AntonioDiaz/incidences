@@ -19,14 +19,16 @@ public class TechnicianSaveUpdateServlet extends BaseServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 		TechnicianDao technicianDao = new TechnicianDaoImpJdo();
+		String key = getParameter(req, "key");
 		String idAccount = getParameter(req, "id_account");
 		String name = getParameter(req, "name");
 		String phone = getParameter(req, "phone");
 
-		Technician technician = technicianDao.getTechnician(KeyFactory.stringToKey(idAccount));
+		Technician technician = technicianDao.getTechnician(KeyFactory.stringToKey(key));
+		technician.setGoogleAccountId(idAccount);
 		technician.setName(name);
 		technician.setPhoneNumber(phone);
-		technicianDao.updateTechnician(KeyFactory.stringToKey(idAccount), technician);
+		technicianDao.updateTechnician(KeyFactory.stringToKey(key), technician);
 
 		RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher("/techniciansList");
 		requestDispatcher.forward(req, resp);

@@ -37,12 +37,16 @@
 		</tr>
 		<c:forEach items="${technicians_list}" var="myTechnician">
 			<tr>
-				<td><c:out value="${myTechnician.googleAccountId}"></c:out><br></td>
-				<td><c:out value="${myTechnician.name}"></c:out><br></td>
-				<td><c:out value="${myTechnician.phoneNumber}"></c:out><br></td>
-				<td><fmt:formatDate value="${myTechnician.lastRegistrationDate}" pattern="dd/MM/yyyy hh:mm"/><br></td>
-				<td><c:out value="${myTechnician.gpsFormated}"></c:out><br></td>
-				<td><c:out value="${myTechnician.incidencesList}"></c:out><br></td>
+				<td><c:out value="${myTechnician.googleAccountId}"></c:out></td>
+				<td><c:out value="${myTechnician.name}"></c:out></td>
+				<td><c:out value="${myTechnician.phoneNumber}"></c:out></td>
+				<td><fmt:formatDate value="${myTechnician.lastRegistrationDate}" pattern="dd/MM/yyyy hh:mm"/></td>
+				<td><c:out value="${myTechnician.gpsFormated}"></c:out></td>
+				<td>
+					<c:forEach items="${myTechnician.incidencesList}" var="myIncidence">
+						<c:out value="${myIncidence.idAux}"></c:out><br>					
+					</c:forEach>
+				</td>
 				<td>
 					<c:url value="/deleteTechnician" var="deleteLink">
 						<c:param name="key" value="${myTechnician.keyStr}" />

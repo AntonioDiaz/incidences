@@ -67,6 +67,7 @@ public class TechnicianDaoImpJdo implements TechnicianDao {
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		try {
 			Technician technicianToUpdate = pm.getObjectById(Technician.class, key);
+			technicianToUpdate.setGoogleAccountId(technician.getGoogleAccountId());
 			technicianToUpdate.setName(technician.getName());
 			technicianToUpdate.setPhoneNumber(technician.getPhoneNumber());
 			if (technician.getLongitude()!=null && technician.getLatitude()!=null) {
