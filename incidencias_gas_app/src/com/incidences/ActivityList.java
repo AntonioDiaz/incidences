@@ -27,7 +27,14 @@ public class ActivityList extends ListActivity {
 	private Context mContext;
 	private ProgressDialog pd;
 	private Integer listType = ActivityMain.PENDING;
-
+	private Thread myThread;
+	
+	@Override
+	protected void onStop() {
+		super.onStop();
+		pd.dismiss();
+	}
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -48,7 +55,7 @@ public class ActivityList extends ListActivity {
 		}
 		textViewTitle.setText(newTitle);
 		pd = ProgressDialog.show(this, "incidencias", "Cargando datos...", true, false);
-		Thread myThread = new ThreadLoadList(myHandler, listType);
+		myThread = new ThreadLoadList(myHandler, listType);
 		myThread.start();
 	}
 
