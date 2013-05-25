@@ -2,29 +2,30 @@ package com.google.android.gcm.demo.app;
 
 import java.util.Date;
 
-
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**
  * Class that represents an incidence.
  * 
  * @author toni
- *
+ * 
  */
 
 public class Incidence {
 
-	private Long id;	
-
 	private String contactName;
-	
+
 	private String contactPhone;
-	
+
 	private String incidenceAddress;
-	
+
 	private String incidenceDesc;
-	
+
 	private Date incidenceDate;
+	
+	private Date closedDate;
+	
+	private Long idAux;
 
 	public Incidence(String contactName, String contactPhone, String incidenceAddress, String incidenceDesc) {
 		super();
@@ -37,14 +38,6 @@ public class Incidence {
 
 	public Incidence() {
 		super();
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 	public String getContactName() {
@@ -86,25 +79,41 @@ public class Incidence {
 	public void setIncidenceDate(Date incidenceDate) {
 		this.incidenceDate = incidenceDate;
 	}
-	
-	public String getIncidenceAddressNoGPS(){
+
+	public String getIncidenceAddressNoGPS() {
 		Integer position = this.incidenceAddress.lastIndexOf("(");
-		position = position==-1?this.incidenceAddress.length():position;
+		position = position == -1 ? this.incidenceAddress.length() : position;
 		return this.incidenceAddress.substring(0, position);
 	}
 
-	public String[] getGpsCoordinates(){
+	public String[] getGpsCoordinates() {
 		String[] gpsCoordinates = null;
 		Integer position = this.incidenceAddress.lastIndexOf("(");
-		if (position!=-1) {
+		if (position != -1) {
 			String substr = this.incidenceAddress.substring(position + 1, this.incidenceAddress.length());
 			gpsCoordinates = substr.split(", ");
 		}
 		return gpsCoordinates;
 	}
-	
-    public String toString (){
-  	   return ToStringBuilder.reflectionToString(this);
-     }
-	
+
+	public String toString() {
+		return ToStringBuilder.reflectionToString(this);
+	}
+
+	public Long getIdAux() {
+		return idAux;
+	}
+
+	public void setIdAux(Long idAux) {
+		this.idAux = idAux;
+	}
+
+	public Date getClosedDate() {
+		return closedDate;
+	}
+
+	public void setClosedDate(Date closedDate) {
+		this.closedDate = closedDate;
+	}
+
 }

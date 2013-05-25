@@ -4,17 +4,33 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
+	<TextView
+	    android:id="@+id/user"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_gravity="center_horizontal"
+	    android:gravity="center"
+	    android:layout_marginBottom="10dp"
+	    android:text="@string/user"
+	    android:textSize="16sp" />
+
     <Button
-        android:id="@+id/show_list_button"
-        android:layout_width="230dp"
+        android:id="@+id/button_my_incidences_opened"
+        android:layout_width="240dp"
         android:layout_height="wrap_content"
-        android:text="@string/button_show_list"
+        android:text="@string/button_my_incidences_opened"
         android:layout_gravity="center" />
     <Button
-        android:id="@+id/show_list_pending_button"
-        android:layout_width="230dp"
+        android:id="@+id/button_orphans"
+        android:layout_width="240dp"
         android:layout_height="wrap_content"
-        android:text="@string/button_show_list_pending"
+        android:text="@string/button_orphans"
+        android:layout_gravity="center" />
+    <Button
+        android:id="@+id/button_my_incidences_closed"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:text="@string/button_my_incidences_closed"
         android:layout_gravity="center" />
 
     <ScrollView

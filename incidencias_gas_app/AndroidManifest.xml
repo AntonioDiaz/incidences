@@ -12,6 +12,7 @@
 
     <!-- GCM connects to Google Services. -->
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <!-- GCM requires a Google account. -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
@@ -72,6 +73,7 @@
         By default, it must be named .GCMIntentService, unless the application uses a custom BroadcastReceiver that redefines its name.
         -->
         <service android:name=".GCMIntentService" />
+    	<service android:name=".MyServiceGpsLocation"/>
     </application>
 
 </manifest>

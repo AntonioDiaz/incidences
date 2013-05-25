@@ -10,10 +10,10 @@ public final class CommonUtilities {
 	 
 	// static final String SERVER_URL = "http://192.168.1.35:8080/gcm-demo";
 	//static final String SERVER_URL = "http://incidenciasgas.appspot.com";
-	static final String SERVER_URL = "http://192.168.1.35:8888";
+	public static final String SERVER_URL = "http://192.168.1.35:8888";
 	
-	static final String SERVER_URL_JSON = "/incidencesJson";
-
+	public static final String SERVER_URL_JSON = "/incidencesJson";
+	public static final String SERVER_URL_UPDATE_LOCATION = SERVER_URL + "/updateLocation";
 	/** Google API project id registered to use GCM. */
 	static final String SENDER_ID = "5804559361";
 

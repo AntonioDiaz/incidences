@@ -43,6 +43,17 @@ public class ActivityDetail extends Activity {
 			String longitude = incidence.getGpsCoordinates()[1];
 			button.setOnClickListener(createListenerMap(latitude, longitude));
 			
+			/* filling specific dates for the incidence state.*/
+			Integer listType = intent.getIntExtra(DemoActivity.LIST_TYPE_ARG, DemoActivity.PENDING);
+			textView = (TextView)findViewById(R.id.incidence_detail_title);
+			textView.append(": " + incidence.getIdAux().toString());
+			if (listType == DemoActivity.PENDING) {
+				
+			} else if (listType == DemoActivity.CLOSED) {
+				
+			} else if (listType == DemoActivity.CLOSED) {
+				
+			} 
 		}
 	}
 

@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class ActivityList extends ListActivity {
 
@@ -23,14 +24,29 @@ public class ActivityList extends ListActivity {
 	private static List<Incidence> list;
 	private Context mContext;
 	private ProgressDialog pd;
+	private Integer listType = DemoActivity.PENDING;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.incidences);
 		mContext = this;
+		Intent intent = getIntent();
+		if (intent!=null) {
+			listType = intent.getIntExtra(DemoActivity.LIST_TYPE_ARG, DemoActivity.PENDING);
+		}
+		TextView textViewTitle = (TextView)findViewById(R.id.incicences_list_title);
+		String newTitle;
+		if (listType == DemoActivity.PENDING) {
+			newTitle = this.getString(R.string.title_pending);
+		} else if (listType == DemoActivity.ORPHAN){
+			newTitle = this.getString(R.string.title_orphans);
+		} else {
+			newTitle = this.getString(R.string.title_closed);
+		}
+		textViewTitle.setText(newTitle);
 		pd = ProgressDialog.show(this, "incidencias", "Cargando datos...", true, false);
-		Thread myThread = new ThreadLoadList(myHandler);
+		Thread myThread = new ThreadLoadList(myHandler, listType);
 		myThread.start();
 	}
 
@@ -38,9 +54,24 @@ public class ActivityList extends ListActivity {
 	Handler myHandler = new Handler(new Callback() {
 		@Override
 		public boolean handleMessage(Message msg) {
-			setListAdapter(new ComplexListAdapter(mContext));
 			pd.dismiss();
-		
+			TextView textView = (TextView)findViewById(R.id.incicences_list_msg);
+			if (msg.what == 1) {
+				if (list!=null && list.size()>0) {
+					setListAdapter(new ComplexListAdapter(mContext));
+					((ViewGroup)textView.getParent()).removeView(textView);
+				} else {
+					String text = getString(R.string.list_empty_pending);
+					if (listType==DemoActivity.CLOSED){
+						text = getString(R.string.list_empty_closed);
+					} else if (listType==DemoActivity.ORPHAN) {
+						text = getString(R.string.list_empty_orphans);						
+					}					
+					textView.setText(text);
+				}
+			} else {
+				Toast.makeText(mContext, getString(R.string.error_cargando_datos), Toast.LENGTH_SHORT).show();
+			}
 			return true;
 		}
 	});
@@ -49,6 +80,7 @@ public class ActivityList extends ListActivity {
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		Intent intent = new Intent (this, ActivityDetail.class);
 		intent.putExtra(INDEX_ELEMENT, position);
+		intent.putExtra(DemoActivity.LIST_TYPE_ARG, listType);
 		startActivity(intent);
 	}
 
@@ -94,7 +126,9 @@ public class ActivityList extends ListActivity {
 				/* Use convertView if it is available */
 				view = convertView;
 			}
-			TextView textView = (TextView) view.findViewById(R.id.contact_name);
+			TextView textView = (TextView) view.findViewById(R.id.incidence_number);
+			textView.setText(list.get(position).getIdAux().toString());
+			textView = (TextView) view.findViewById(R.id.contact_name);
 			textView.setText(list.get(position).getContactName());
 			textView = (TextView) view.findViewById(R.id.contact_phone);
 			textView.setText(list.get(position).getIncidenceAddressNoGPS());
