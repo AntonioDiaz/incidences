@@ -44,6 +44,9 @@ public class Incidence {
 	@Persistent
 	private Date incidenceDate;
 	
+	@Persistent
+	private Date closedDate;
+	
 	@Persistent(valueStrategy = IdGeneratorStrategy.SEQUENCE)
 	private Long idAux;
 
@@ -146,6 +149,14 @@ public class Incidence {
 	
 	public String getKeyStr(){
 		return KeyFactory.keyToString(key);
+	}
+
+	public Date getClosedDate() {
+		return closedDate;
+	}
+
+	public void setClosedDate(Date closedDate) {
+		this.closedDate = closedDate;
 	}
 
 }
