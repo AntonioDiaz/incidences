@@ -50,6 +50,21 @@ public class TechnicianDaoImpJdo implements TechnicianDao {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public Technician getTechnician(String idGoogleAccount) {
+		List<Technician> technicians = null;
+		PersistenceManager pm = PMF.get().getPersistenceManager();
+		pm.refreshAll();
+		Query query = pm.newQuery(Technician.class);
+		query.setFilter("googleAccountId == '"+ idGoogleAccount +"'");
+		try {
+			technicians = (List<Technician>) query.execute();
+		} finally {
+			pm.close();
+		}
+		return technicians.size()>0?technicians.get(0):null;
+	}
 	@Override
 	public Technician getTechnician(Key key) {
 		PersistenceManager pm = PMF.get().getPersistenceManager();

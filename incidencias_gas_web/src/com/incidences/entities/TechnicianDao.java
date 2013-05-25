@@ -15,6 +15,8 @@ public interface TechnicianDao {
 	public void updateTechnician(Key key, Technician technician);
 
 	public Technician getTechnician(Key key);
+	
+	public Technician getTechnician(String idAccount);
 
 	public Technician updateTechnicianAddIncidence(Key key, Incidence incidence);
 
