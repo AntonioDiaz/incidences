@@ -1,9 +1,9 @@
-package com.google.android.gcm.demo.app;
+package com.incidences;
 
-import static com.google.android.gcm.demo.app.CommonUtilities.DISPLAY_MESSAGE_ACTION;
-import static com.google.android.gcm.demo.app.CommonUtilities.EXTRA_MESSAGE;
-import static com.google.android.gcm.demo.app.CommonUtilities.SENDER_ID;
-import static com.google.android.gcm.demo.app.CommonUtilities.SERVER_URL;
+import static com.incidences.CommonUtilities.DISPLAY_MESSAGE_ACTION;
+import static com.incidences.CommonUtilities.EXTRA_MESSAGE;
+import static com.incidences.CommonUtilities.SENDER_ID;
+import static com.incidences.CommonUtilities.SERVER_URL;
 import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.app.Activity;
@@ -26,11 +26,10 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.android.gcm.GCMRegistrar;
+import com.google.android.gcm.demo.app.R;
 
-/**
- * Main UI for the demo app.
- */
-public class DemoActivity extends Activity {
+/** Main UI for the demo app. */
+public class ActivityMain extends Activity {
 
 	TextView mDisplay;
 	AsyncTask<Void, Void, Void> mRegisterTask;
@@ -43,7 +42,7 @@ public class DemoActivity extends Activity {
 	public static final Integer PENDING = 0;
 	public static final Integer ORPHAN = 1;
 	public static final Integer CLOSED = 2;
-	static final String TAG = DemoActivity.class.getSimpleName();
+	static final String TAG = ActivityMain.class.getSimpleName();
 
 	
 	@Override
@@ -65,7 +64,7 @@ public class DemoActivity extends Activity {
 		} else {
 			setContentView(R.layout.main);
 			TextView myTextViewUser = (TextView) findViewById(R.id.user);
-			myTextViewUser.setText(DemoActivity.userId);
+			myTextViewUser.setText(ActivityMain.userId);
 			checkNotNull(SERVER_URL, "SERVER_URL");
 			checkNotNull(SENDER_ID, "SENDER_ID");
 			/* Make sure the device has the proper dependencies. */
@@ -128,7 +127,7 @@ public class DemoActivity extends Activity {
 			button.setOnClickListener(this.createShowListListener(ORPHAN));
 			button = (Button) findViewById(R.id.button_my_incidences_closed);
 			button.setOnClickListener(this.createShowListListener(CLOSED));
-			startService(new Intent(this, MyServiceGpsLocation.class));
+			startService(new Intent(this, ServiceGpsLocation.class));
 		}
 	}
 
@@ -136,7 +135,7 @@ public class DemoActivity extends Activity {
 		AccountManager am = AccountManager.get(this);
 		Account[] accounts = am.getAccountsByType("com.google");
 		if (accounts.length > 0) {
-			DemoActivity.userId = accounts[0].name;
+			ActivityMain.userId = accounts[0].name;
 		}
 	}
 

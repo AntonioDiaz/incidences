@@ -1,4 +1,4 @@
-package com.google.android.gcm.demo.app;
+package com.incidences;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -69,7 +69,7 @@ public class ThreadLoadList extends Thread {
 			HttpConnectionParams.setSoTimeout(httpParameters, timeoutSocket);
 			DefaultHttpClient httpclient = new DefaultHttpClient(httpParameters);			
 			List<NameValuePair> pairs = new ArrayList<NameValuePair>();
-			pairs.add(new BasicNameValuePair("id_technician", DemoActivity.userId));
+			pairs.add(new BasicNameValuePair("id_technician", ActivityMain.userId));
 			pairs.add(new BasicNameValuePair("list_type", myListType.toString()));			
 			String query = URLEncodedUtils.format(pairs, "utf-8");			
 			HttpGet httpGet = new HttpGet(URL_WEB + "?" + query);

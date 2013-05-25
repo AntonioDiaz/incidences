@@ -1,10 +1,11 @@
-package com.google.android.gcm.demo.app;
+package com.incidences;
 
-import static com.google.android.gcm.demo.app.CommonUtilities.SERVER_URL;
-import static com.google.android.gcm.demo.app.CommonUtilities.TAG;
-import static com.google.android.gcm.demo.app.CommonUtilities.displayMessage;
+import static com.incidences.CommonUtilities.SERVER_URL;
+import static com.incidences.CommonUtilities.TAG;
+import static com.incidences.CommonUtilities.displayMessage;
 
 import com.google.android.gcm.GCMRegistrar;
+import com.google.android.gcm.demo.app.R;
 
 import android.content.Context;
 import android.util.Log;

@@ -1,7 +1,7 @@
-package com.google.android.gcm.demo.app;
+package com.incidences;
 
-import static com.google.android.gcm.demo.app.CommonUtilities.SENDER_ID;
-import static com.google.android.gcm.demo.app.CommonUtilities.displayMessage;
+import static com.incidences.CommonUtilities.SENDER_ID;
+import static com.incidences.CommonUtilities.displayMessage;
 
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -13,6 +13,7 @@ import android.util.Log;
 
 import com.google.android.gcm.GCMBaseIntentService;
 import com.google.android.gcm.GCMRegistrar;
+import com.google.android.gcm.demo.app.R;
 
 /** IntentService responsible for handling GCM messages. */
 public class GCMIntentService extends GCMBaseIntentService {
@@ -88,7 +89,7 @@ public class GCMIntentService extends GCMBaseIntentService {
 		notification.ledOnMS = 100; 
 		notification.ledOffMS = 100; 
 		String title = context.getString(R.string.app_name);
-		Intent notificationIntent = new Intent(context, DemoActivity.class);
+		Intent notificationIntent = new Intent(context, ActivityMain.class);
 		/* set intent so it does not start a new activity. */
 		notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
 		PendingIntent intent = PendingIntent.getActivity(context, 0, notificationIntent, 0);

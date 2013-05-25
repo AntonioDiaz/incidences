@@ -1,4 +1,4 @@
-package com.google.android.gcm.demo.app;
+package com.incidences;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -20,9 +20,9 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.util.Log;
 
-public class MyServiceGpsLocation extends Service {
+public class ServiceGpsLocation extends Service {
 
-	private static final String TAG = MyServiceGpsLocation.class.getName();
+	private static final String TAG = ServiceGpsLocation.class.getName();
 
 	@Override
 	public IBinder onBind(Intent arg0) {
@@ -41,7 +41,7 @@ public class MyServiceGpsLocation extends Service {
 		DefaultHttpClient httpclient = new DefaultHttpClient();
 		HttpPost httpPost = new HttpPost(CommonUtilities.SERVER_URL_UPDATE_LOCATION);
 		List<NameValuePair> pairs = new ArrayList<NameValuePair>();
-		pairs.add(new BasicNameValuePair("id_technician", DemoActivity.userId));
+		pairs.add(new BasicNameValuePair("id_technician", ActivityMain.userId));
 		pairs.add(new BasicNameValuePair("new_latitude", String.valueOf(location.getLatitude())));
 		pairs.add(new BasicNameValuePair("new_longitude", String.valueOf(location.getLongitude())));
 		try {

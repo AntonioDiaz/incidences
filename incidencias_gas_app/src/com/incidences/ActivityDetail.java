@@ -1,8 +1,10 @@
-package com.google.android.gcm.demo.app;
+package com.incidences;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
+
+import com.google.android.gcm.demo.app.R;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -44,14 +46,14 @@ public class ActivityDetail extends Activity {
 			button.setOnClickListener(createListenerMap(latitude, longitude));
 			
 			/* filling specific dates for the incidence state.*/
-			Integer listType = intent.getIntExtra(DemoActivity.LIST_TYPE_ARG, DemoActivity.PENDING);
+			Integer listType = intent.getIntExtra(ActivityMain.LIST_TYPE_ARG, ActivityMain.PENDING);
 			textView = (TextView)findViewById(R.id.incidence_detail_title);
 			textView.append(": " + incidence.getIdAux().toString());
-			if (listType == DemoActivity.PENDING) {
+			if (listType == ActivityMain.PENDING) {
 				
-			} else if (listType == DemoActivity.CLOSED) {
+			} else if (listType == ActivityMain.CLOSED) {
 				
-			} else if (listType == DemoActivity.CLOSED) {
+			} else if (listType == ActivityMain.CLOSED) {
 				
 			} 
 		}

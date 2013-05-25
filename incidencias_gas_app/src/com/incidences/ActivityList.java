@@ -1,6 +1,8 @@
-package com.google.android.gcm.demo.app;
+package com.incidences;
 
 import java.util.List;
+
+import com.google.android.gcm.demo.app.R;
 
 import android.app.ListActivity;
 import android.app.ProgressDialog;
@@ -24,7 +26,7 @@ public class ActivityList extends ListActivity {
 	private static List<Incidence> list;
 	private Context mContext;
 	private ProgressDialog pd;
-	private Integer listType = DemoActivity.PENDING;
+	private Integer listType = ActivityMain.PENDING;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -33,13 +35,13 @@ public class ActivityList extends ListActivity {
 		mContext = this;
 		Intent intent = getIntent();
 		if (intent!=null) {
-			listType = intent.getIntExtra(DemoActivity.LIST_TYPE_ARG, DemoActivity.PENDING);
+			listType = intent.getIntExtra(ActivityMain.LIST_TYPE_ARG, ActivityMain.PENDING);
 		}
 		TextView textViewTitle = (TextView)findViewById(R.id.incicences_list_title);
 		String newTitle;
-		if (listType == DemoActivity.PENDING) {
+		if (listType == ActivityMain.PENDING) {
 			newTitle = this.getString(R.string.title_pending);
-		} else if (listType == DemoActivity.ORPHAN){
+		} else if (listType == ActivityMain.ORPHAN){
 			newTitle = this.getString(R.string.title_orphans);
 		} else {
 			newTitle = this.getString(R.string.title_closed);
@@ -62,9 +64,9 @@ public class ActivityList extends ListActivity {
 					((ViewGroup)textView.getParent()).removeView(textView);
 				} else {
 					String text = getString(R.string.list_empty_pending);
-					if (listType==DemoActivity.CLOSED){
+					if (listType==ActivityMain.CLOSED){
 						text = getString(R.string.list_empty_closed);
-					} else if (listType==DemoActivity.ORPHAN) {
+					} else if (listType==ActivityMain.ORPHAN) {
 						text = getString(R.string.list_empty_orphans);						
 					}					
 					textView.setText(text);
@@ -80,7 +82,7 @@ public class ActivityList extends ListActivity {
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		Intent intent = new Intent (this, ActivityDetail.class);
 		intent.putExtra(INDEX_ELEMENT, position);
-		intent.putExtra(DemoActivity.LIST_TYPE_ARG, listType);
+		intent.putExtra(ActivityMain.LIST_TYPE_ARG, listType);
 		startActivity(intent);
 	}
 

@@ -1,4 +1,4 @@
-package com.google.android.gcm.demo.app;
+package com.incidences;
 
 import java.util.Date;
 
