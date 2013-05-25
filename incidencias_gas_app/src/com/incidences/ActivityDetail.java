@@ -4,7 +4,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 
-import com.google.android.gcm.demo.app.R;
+import com.incidences.R;
 
 import android.app.Activity;
 import android.content.Intent;

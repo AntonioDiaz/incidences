@@ -6,14 +6,6 @@ import android.content.Intent;
 /** Helper class providing methods and constants common to other classes in the app. */
 public final class CommonUtilities {
 
-	/** Base URL of the Demo Server (such as http://my_host:8080/gcm-demo) */
-	 
-	// static final String SERVER_URL = "http://192.168.1.35:8080/gcm-demo";
-	//static final String SERVER_URL = "http://incidenciasgas.appspot.com";
-	public static final String SERVER_URL = "http://192.168.1.35:8888";
-	
-	public static final String SERVER_URL_JSON = "/incidencesJson";
-	public static final String SERVER_URL_UPDATE_LOCATION = SERVER_URL + "/updateLocation";
 	/** Google API project id registered to use GCM. */
 	static final String SENDER_ID = "5804559361";
 

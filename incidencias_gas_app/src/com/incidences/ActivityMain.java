@@ -3,7 +3,6 @@ package com.incidences;
 import static com.incidences.CommonUtilities.DISPLAY_MESSAGE_ACTION;
 import static com.incidences.CommonUtilities.EXTRA_MESSAGE;
 import static com.incidences.CommonUtilities.SENDER_ID;
-import static com.incidences.CommonUtilities.SERVER_URL;
 import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.app.Activity;
@@ -11,10 +10,12 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.Menu;
@@ -26,7 +27,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.android.gcm.GCMRegistrar;
-import com.google.android.gcm.demo.app.R;
 
 /** Main UI for the demo app. */
 public class ActivityMain extends Activity {
@@ -43,11 +43,14 @@ public class ActivityMain extends Activity {
 	public static final Integer ORPHAN = 1;
 	public static final Integer CLOSED = 2;
 	static final String TAG = ActivityMain.class.getSimpleName();
-
+	public static String URL_SERVER;
+	public static SharedPreferences settings;
+	public static final String PREFERENCE_SERVER = "url_server";
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		settings = PreferenceManager.getDefaultSharedPreferences(this);
 		mContext = this;
 		inicializeUserText();
 		/* google login is needed. */
@@ -65,7 +68,7 @@ public class ActivityMain extends Activity {
 			setContentView(R.layout.main);
 			TextView myTextViewUser = (TextView) findViewById(R.id.user);
 			myTextViewUser.setText(ActivityMain.userId);
-			checkNotNull(SERVER_URL, "SERVER_URL");
+			checkNotNull(getUrlServer(), "SERVER_URL");
 			checkNotNull(SENDER_ID, "SENDER_ID");
 			/* Make sure the device has the proper dependencies. */
 			GCMRegistrar.checkDevice(this);
@@ -174,8 +177,9 @@ public class ActivityMain extends Activity {
 		case R.id.options_unregister:
 			GCMRegistrar.unregister(this);
 			return true;
-		case R.id.options_clear:
-			mDisplay.setText(null);
+		case R.id.options_preferences:
+			Intent intent = new Intent(ActivityMain.this, PrefsActivity.class);
+			startActivity(intent);
 			return true;
 		case R.id.options_exit:
 			finish();
@@ -226,5 +230,10 @@ public class ActivityMain extends Activity {
 			}
 		}
 		return false;
+	}	
+	
+	public static String getUrlServer(){
+		String urlServer = settings.getString(PREFERENCE_SERVER, "");		
+		return urlServer;
 	}
 }

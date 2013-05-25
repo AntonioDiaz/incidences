@@ -13,7 +13,7 @@ import android.util.Log;
 
 import com.google.android.gcm.GCMBaseIntentService;
 import com.google.android.gcm.GCMRegistrar;
-import com.google.android.gcm.demo.app.R;
+import com.incidences.R;
 
 /** IntentService responsible for handling GCM messages. */
 public class GCMIntentService extends GCMBaseIntentService {

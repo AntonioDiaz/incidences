@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.google.android.gcm.demo.app"
+    package="com.incidences"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -24,8 +24,8 @@
 
     <!-- Creates a custom permission so only this app can receive its messages.
      NOTE: the permission *must* be called PACKAGE.permission.C2D_MESSAGE, where PACKAGE is the application's package name. -->
-    <permission android:name="com.google.android.gcm.demo.app.permission.C2D_MESSAGE" android:protectionLevel="signature" />
-    <uses-permission android:name="com.google.android.gcm.demo.app.permission.C2D_MESSAGE" />
+    <permission android:name="com.incidences.permission.C2D_MESSAGE" android:protectionLevel="signature" />
+    <uses-permission android:name="com.incidences.permission.C2D_MESSAGE" />
 
     <!-- This app has permission to register and receive data message. -->
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
@@ -52,6 +52,9 @@
         </activity>
         <activity android:name="com.incidences.ActivityList"></activity>
         <activity android:name="com.incidences.ActivityDetail"></activity>
+		<activity android:name=".PrefsActivity" android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity>
+        
         <!-- 
         BroadcastReceiver that will receive intents from GCM services and handle them to the custom IntentService.
         The com.google.android.c2dm.permission.SEND permission is necessary so only GCM services can send data messages for the app. 

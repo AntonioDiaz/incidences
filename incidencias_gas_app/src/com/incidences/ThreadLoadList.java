@@ -28,7 +28,7 @@ import com.google.gson.reflect.TypeToken;
 
 public class ThreadLoadList extends Thread {
 
-	public static final String URL_WEB = CommonUtilities.SERVER_URL + CommonUtilities.SERVER_URL_JSON;
+	public static final String SERVER_URL_JSON = "/incidencesJson";
 	private Integer myListType;
 	
 	public ThreadLoadList(Handler handler, Integer listType) {
@@ -71,11 +71,9 @@ public class ThreadLoadList extends Thread {
 			List<NameValuePair> pairs = new ArrayList<NameValuePair>();
 			pairs.add(new BasicNameValuePair("id_technician", ActivityMain.userId));
 			pairs.add(new BasicNameValuePair("list_type", myListType.toString()));			
-			String query = URLEncodedUtils.format(pairs, "utf-8");			
-			HttpGet httpGet = new HttpGet(URL_WEB + "?" + query);
-			
-
-			
+			String query = URLEncodedUtils.format(pairs, "utf-8");	
+			String urlWeb = ActivityMain.getUrlServer() + SERVER_URL_JSON;
+			HttpGet httpGet = new HttpGet(urlWeb + "?" + query);
 			HttpResponse response = httpclient.execute(httpGet);
 			HttpEntity entity = response.getEntity();
 			String str = convertStreamToString(entity.getContent());

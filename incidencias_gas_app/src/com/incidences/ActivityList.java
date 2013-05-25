@@ -2,7 +2,7 @@ package com.incidences;
 
 import java.util.List;
 
-import com.google.android.gcm.demo.app.R;
+import com.incidences.R;
 
 import android.app.ListActivity;
 import android.app.ProgressDialog;

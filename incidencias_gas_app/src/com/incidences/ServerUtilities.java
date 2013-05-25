@@ -1,14 +1,7 @@
 package com.incidences;
 
-import static com.incidences.CommonUtilities.SERVER_URL;
 import static com.incidences.CommonUtilities.TAG;
 import static com.incidences.CommonUtilities.displayMessage;
-
-import com.google.android.gcm.GCMRegistrar;
-import com.google.android.gcm.demo.app.R;
-
-import android.content.Context;
-import android.util.Log;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -20,6 +13,11 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Random;
+
+import android.content.Context;
+import android.util.Log;
+
+import com.google.android.gcm.GCMRegistrar;
 
 /** Helper class used to communicate with the demo server. */
 public final class ServerUtilities {
@@ -36,7 +34,7 @@ public final class ServerUtilities {
 	 */
 	static boolean register(final Context context, final String regId, String number) {
 		Log.i(TAG, "registering device (regId = " + regId + ")");
-		String serverUrl = SERVER_URL + "/register";
+		String serverUrl = ActivityMain.getUrlServer() + "/register";
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("regId", regId);
 		params.put("phoneNumber", number);
@@ -80,7 +78,7 @@ public final class ServerUtilities {
 	/** Unregister this account/device pair within the server. */
 	static void unregister(final Context context, final String regId) {
 		Log.i(TAG, "unregistering device (regId = " + regId + ")");
-		String serverUrl = SERVER_URL + "/unregister";
+		String serverUrl = ActivityMain.getUrlServer() + "/unregister";
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("regId", regId);
 		try {

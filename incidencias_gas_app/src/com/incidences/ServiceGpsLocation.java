@@ -39,7 +39,7 @@ public class ServiceGpsLocation extends Service {
 
 	private void updatePositionOnServer(Location location) {
 		DefaultHttpClient httpclient = new DefaultHttpClient();
-		HttpPost httpPost = new HttpPost(CommonUtilities.SERVER_URL_UPDATE_LOCATION);
+		HttpPost httpPost = new HttpPost(ActivityMain.getUrlServer() + "/updateLocation");
 		List<NameValuePair> pairs = new ArrayList<NameValuePair>();
 		pairs.add(new BasicNameValuePair("id_technician", ActivityMain.userId));
 		pairs.add(new BasicNameValuePair("new_latitude", String.valueOf(location.getLatitude())));

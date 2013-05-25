@@ -16,7 +16,7 @@
     <string name="server_unregister_error">Could not unregister device on Demo Server (%1$s).</string>
     <string name="options_register">Register</string>
     <string name="options_unregister">Unregister</string>
-    <string name="options_clear">Clear</string>
+    <string name="options_preferences">Preferences</string>
     <string name="options_exit">Exit</string>
     
     <string name="button_my_incidences_opened">Mis incidencias</string>
@@ -57,5 +57,14 @@
     <string name="error_cargando_datos">Se ha producido un error en la carga de los datos, por favor contacte con el administrador del sistema</string>
     <string name="error_internet">Para poder usar la aplicación es necesario tener activada la conexión a internet.</string>
     <string name="error_login">Para poder usar la aplicación es necesario estar logado den su cuenta de Google.</string>
+
+    
+    <string name="preferences_summary">Preferencias del servidor</string>
+    <string name="preferences_summary_title">Preferencias del servidor</string>
+    <string name="preferences_key_server">servidor</string>
+    <string name="preferences_summary_server">Escriba la URL del servidor</string>
+    <string name="preferences_title_server">servidor</string>
+    <string name="default_url">http://incidenciasgas.appspot.com</string>
+    
     
 </resources>
