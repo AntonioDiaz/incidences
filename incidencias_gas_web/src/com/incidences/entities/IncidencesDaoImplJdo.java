@@ -25,6 +25,9 @@ public class IncidencesDaoImplJdo implements IncidencesDao {
 	public List<Incidence> allIncicendesList() {
 		List<Incidence> incidences = null;
 		PersistenceManager pm = PMF.get().getPersistenceManager();
+		pm.getFetchPlan().setMaxFetchDepth(2);
+		pm.getFetchPlan().setFetchSize(2);
+		//pm.getFetchPlan().setMaxFetchDepth(2);
 		final Query query = pm.newQuery(Incidence.class);
 		try {
 			incidences = (List<Incidence>) query.execute();

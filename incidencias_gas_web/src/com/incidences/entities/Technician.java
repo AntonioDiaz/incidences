@@ -26,7 +26,6 @@ public class Technician {
 
 	public Technician(String googleAccountId, String name, String phoneNumber) {
 		super();
-		this.key = KeyFactory.createKey(Technician.class.getSimpleName(), googleAccountId);
 		this.googleAccountId = googleAccountId;
 		this.name = name;
 		this.phoneNumber = phoneNumber;
@@ -61,7 +60,7 @@ public class Technician {
 	@Persistent
 	private String registrationGcmId;
 
-	@Persistent(mappedBy = "technician", defaultFetchGroup = "true")
+	@Persistent(mappedBy = "technician")
 	@Element(dependent = "true")
 	private List<Incidence> incidencesList = new ArrayList<Incidence>();
 
