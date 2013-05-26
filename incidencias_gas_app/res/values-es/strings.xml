@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Gestión de Incidencias</string>
+    <string name="error_config">Please set the %1$s constant and recompile the app.</string>
+    <string name="already_registered">Device is already registered on server.</string>
+    <string name="gcm_registered">From GCM: device successfully registered!</string>
+    <string name="gcm_unregistered">From GCM: device successfully unregistered!</string>
+    <string name="gcm_message">Nuevas incidencias.</string>
+    <string name="gcm_error">From GCM: error (%1$s).</string>
+    <string name="gcm_recoverable_error">From GCM: recoverable error (%1$s).</string>
+    <string name="gcm_deleted">From GCM: server deleted %1$d pending messages!</string>
+    <string name="server_registering">Trying (attempt %1$d/%2$d) to register device on Demo Server</string>
+    <string name="server_registered">From Demo Server: successfully added device!</string>
+    <string name="server_unregistered">From Demo Server: successfully removed device!</string>
+    <string name="server_register_error">Could not register device on Demo Server after %1$d attempts.</string>
+    <string name="server_unregister_error">Could not unregister device on Demo Server (%1$s).</string>
+    <string name="options_register">Register</string>
+    <string name="options_unregister">Unregister</string>
+    <string name="options_preferences">Preferences</string>
+    <string name="options_exit">Exit</string>
+    
+    <string name="button_my_incidences_opened">Mis incidencias</string>
+    <string name="button_orphans">Incidencias desasignadas</string>
+    <string name="button_my_incidences_closed">Incidencias cerradas</string>
+
+    <string name="title_pending">Mis incidencias pendientes</string>
+    <string name="title_orphans">Incidencias desasignadas</string>
+    <string name="title_closed">Mis incidencias cerradas</string>
+    
+    <string name="incidences_list">Lista de incidencias</string>
+    <string name="list_empty_pending">No tiene incidencias pendientes</string>
+    <string name="list_empty_orphans">No hay incidencias desasignadas</string>
+    <string name="list_empty_closed">No hay incidencias cerradas</string>
+    <string name="list_loading">Cargando datos...</string>
+    
+    <string name="incidence_pending">Pendiente</string>
+    <string name="temp"></string>
+    <string name="user">Usuario: </string>
+    
+    
+    
+    <string name="incidence_date">Fecha: </string>
+    <string name="incidence_close_date">Cierre: </string>
+    <string name="incidence_name">Nombre: </string>
+    <string name="incidence_phone">Teléfono: </string>
+    <string name="incidence_address">Dirección: </string>
+    <string name="incidence_desc">Descripción: </string>
+    <string name="incidence_state">Estado: </string>
+    <string name="incidence_call">Llamar</string>
+    <string name="incidence_accept">Aceptar</string>
+    <string name="incidence_map">Mapa</string>
+    
+    <!-- Incidence detail -->
+    <string name="detail_incidence">Incidencia</string>
+    <string name="detail_title_open">abierta</string>
+    <string name="detail_title_orphan">sin asignar</string>
+    <string name="detail_title_close">cerrada</string>
+    <string name="detail_button_state">cerrar</string>
+    <string name="detail_button_assgnation">asignar</string>
+    <string name="detail_updating">Actualizando la incidencia</string>
+    <string name="detail_updated">Incidencia actualizada</string>
+    
+    <string name="error">Error</string>
+    <string name="error_cargando_datos">Se ha producido un error en la carga de los datos, por favor contacte con el administrador del sistema</string>
+    <string name="error_updating_incidence">Se ha producido un error al actualizar la incidencia, por favor contacte con el administrador del sistema</string>
+    <string name="error_internet">Para poder usar la aplicación es necesario tener activada la conexión a internet.</string>
+    <string name="error_login">Para poder usar la aplicación es necesario estar logado den su cuenta de Google.</string>
+
+    
+    <string name="preferences_summary">Preferencias de la app de Incidencias</string>
+    <string name="preferences_summary_title">Preferencias del servidor</string>
+    <string name="preferences_summary_server">Escriba la URL del servidor</string>
+    <string name="preferences_title_server">Escriba la URL del servidor</string>
+    <string name="preferences_title_show_log">Mostrar el log del GCM</string>
+    <string name="preferences_summary_show_log">si/no</string>
+    
+    <string name="default_url">http://incidenciasgas.appspot.com</string>
+    
+    
+</resources>
