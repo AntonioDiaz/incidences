@@ -54,7 +54,7 @@ public class ActivityList extends ListActivity {
 			newTitle = this.getString(R.string.title_closed);
 		}
 		textViewTitle.setText(newTitle);
-		pd = ProgressDialog.show(this, "incidencias", "Cargando datos...", true, false);
+		pd = ProgressDialog.show(this, "incidencias", this.getString(R.string.list_loading), true, false);
 		myThread = new ThreadLoadList(myHandler, listType);
 		myThread.start();
 	}

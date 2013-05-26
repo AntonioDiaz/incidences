@@ -31,6 +31,7 @@
     <string name="list_empty_pending">No tiene incidencias pendientes</string>
     <string name="list_empty_orphans">No hay incidencias desasignadas</string>
     <string name="list_empty_closed">No hay incidencias cerradas</string>
+    <string name="list_loading">Cargando datos...</string>
     
     <string name="incidence_pending">Pendiente</string>
     <string name="temp"></string>
@@ -56,6 +57,8 @@
     <string name="detail_title_close">cerrada</string>
     <string name="detail_button_state">cerrar</string>
     <string name="detail_button_assgnation">asignar</string>
+    <string name="detail_updating">Actualizando la incidencia</string>
+    <string name="detail_updated">Incidencia actualizada</string>
     
     <string name="error">Error</string>
     <string name="error_cargando_datos">Se ha producido un error en la carga de los datos, por favor contacte con el administrador del sistema</string>

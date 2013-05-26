@@ -11,6 +11,9 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.params.BasicHttpParams;
+import org.apache.http.params.HttpConnectionParams;
+import org.apache.http.params.HttpParams;
 
 import android.app.Activity;
 import android.content.Context;
@@ -90,11 +93,19 @@ public class ActivityDetail extends Activity {
 		}
 	}
 
+	/**
+	 * Call to the server to close an incidence, then open the list of closed incidences.
+	 * @param idIncidence
+	 * @return
+	 */
 	private OnClickListener createListenerAssingIncidence(final Long idIncidence) {
 		return new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				DefaultHttpClient httpclient = new DefaultHttpClient();
+				HttpParams httpParameters = new BasicHttpParams();
+				HttpConnectionParams.setConnectionTimeout(httpParameters, 3000);
+				HttpConnectionParams.setSoTimeout(httpParameters, 20000);
+				DefaultHttpClient httpclient = new DefaultHttpClient(httpParameters);			
 				HttpPost httpPost = new HttpPost(ActivityMain.getUrlServer() + "/saveUpdateIncidence");
 				List<NameValuePair> pairs = new ArrayList<NameValuePair>();
 				pairs.add(new BasicNameValuePair("id_technician", ActivityMain.userId));
@@ -102,7 +113,11 @@ public class ActivityDetail extends Activity {
 				pairs.add(new BasicNameValuePair("to_assign", "true"));
 				try {
 					httpPost.setEntity(new UrlEncodedFormEntity(pairs));
-					httpclient.execute(httpPost);
+					httpclient.execute(httpPost);					
+					Toast.makeText(mContext, mContext.getString(R.string.detail_updated), Toast.LENGTH_SHORT).show();
+					Intent intent = new Intent(mContext, ActivityList.class);
+					intent.putExtra(ActivityMain.LIST_TYPE_ARG, ActivityMain.PENDING);
+					mContext.startActivity(intent);
 				} catch (Exception e) {
 					Log.e(TAG, TAG + " Error: " + e.getMessage());
 					Toast.makeText(mContext, mContext.getString(R.string.error_updating_incidence), Toast.LENGTH_SHORT).show();
@@ -111,11 +126,19 @@ public class ActivityDetail extends Activity {
 		};
 	}
 	
+	/**
+	 * Call to the server to autoasign an incidence, then open the list of pending incidences.
+	 * @param idIncidence
+	 * @return
+	 */
 	private OnClickListener createListenerCloseIncidence(final Long idIncidence) {
 		return new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				DefaultHttpClient httpclient = new DefaultHttpClient();
+				HttpParams httpParameters = new BasicHttpParams();
+				HttpConnectionParams.setConnectionTimeout(httpParameters, 3000);
+				HttpConnectionParams.setSoTimeout(httpParameters, 20000);
+				DefaultHttpClient httpclient = new DefaultHttpClient(httpParameters);			
 				HttpPost httpPost = new HttpPost(ActivityMain.getUrlServer() + "/saveUpdateIncidence");
 				List<NameValuePair> pairs = new ArrayList<NameValuePair>();
 				pairs.add(new BasicNameValuePair("id_technician", ActivityMain.userId));
@@ -124,6 +147,10 @@ public class ActivityDetail extends Activity {
 				try {
 					httpPost.setEntity(new UrlEncodedFormEntity(pairs));
 					httpclient.execute(httpPost);
+					Toast.makeText(mContext, mContext.getString(R.string.detail_updated), Toast.LENGTH_SHORT).show();
+					Intent intent = new Intent(mContext, ActivityList.class);
+					intent.putExtra(ActivityMain.LIST_TYPE_ARG, ActivityMain.CLOSED);
+					mContext.startActivity(intent);
 				} catch (Exception e) {
 					Log.e(TAG, TAG + " Error: " + e.getMessage());
 					Toast.makeText(mContext, mContext.getString(R.string.error_updating_incidence), Toast.LENGTH_SHORT).show();
@@ -131,7 +158,7 @@ public class ActivityDetail extends Activity {
 			}
 		};
 	}
-
+	
 	private OnClickListener createListenerMap(final String latitude, final String longitude) {
 		return new OnClickListener() {
 			@Override
@@ -158,4 +185,10 @@ public class ActivityDetail extends Activity {
 		};
 	}
 
+	@Override
+	protected void onPause() {
+		this.finish();
+		super.onPause();
+	}
+	
 }

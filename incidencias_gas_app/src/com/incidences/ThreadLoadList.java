@@ -63,10 +63,8 @@ public class ThreadLoadList extends Thread {
 	private String doGetPetition() {
 		try {
 			HttpParams httpParameters = new BasicHttpParams();
-			int timeoutConnection = 3000;
-			HttpConnectionParams.setConnectionTimeout(httpParameters, timeoutConnection);
-			int timeoutSocket = 20000;
-			HttpConnectionParams.setSoTimeout(httpParameters, timeoutSocket);
+			HttpConnectionParams.setConnectionTimeout(httpParameters, 3000);
+			HttpConnectionParams.setSoTimeout(httpParameters, 20000);
 			DefaultHttpClient httpclient = new DefaultHttpClient(httpParameters);			
 			List<NameValuePair> pairs = new ArrayList<NameValuePair>();
 			pairs.add(new BasicNameValuePair("id_technician", ActivityMain.userId));
