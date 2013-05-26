@@ -9,6 +9,12 @@
             android:key="url_server"
             android:summary="@string/preferences_summary_server"
             android:title="@string/preferences_title_server" />
+
+        <CheckBoxPreference
+            android:key="show_log"
+            android:title="@string/preferences_title_show_log"
+            android:summary="@string/preferences_summary_show_log"
+             />
     </PreferenceCategory>
 
 </PreferenceScreen>

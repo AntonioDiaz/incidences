@@ -39,10 +39,12 @@
     
     
     <string name="incidence_date">Fecha: </string>
+    <string name="incidence_close_date">Cierre: </string>
     <string name="incidence_name">Nombre: </string>
     <string name="incidence_phone">Teléfono: </string>
     <string name="incidence_address">Dirección: </string>
     <string name="incidence_desc">Descripción: </string>
+    <string name="incidence_state">Estado: </string>
     <string name="incidence_call">Llamar</string>
     <string name="incidence_accept">Aceptar</string>
     <string name="incidence_map">Mapa</string>
@@ -52,6 +54,8 @@
     <string name="detail_title_open">abierta</string>
     <string name="detail_title_orphan">sin asignar</string>
     <string name="detail_title_close">cerrada</string>
+    <string name="detail_button_state">cerrar</string>
+    <string name="detail_button_assgnation">asignar</string>
     
     <string name="error">Error</string>
     <string name="error_cargando_datos">Se ha producido un error en la carga de los datos, por favor contacte con el administrador del sistema</string>
@@ -59,11 +63,13 @@
     <string name="error_login">Para poder usar la aplicación es necesario estar logado den su cuenta de Google.</string>
 
     
-    <string name="preferences_summary">Preferencias del servidor</string>
+    <string name="preferences_summary">Preferencias de la app de Incidencias</string>
     <string name="preferences_summary_title">Preferencias del servidor</string>
-    <string name="preferences_key_server">servidor</string>
     <string name="preferences_summary_server">Escriba la URL del servidor</string>
-    <string name="preferences_title_server">servidor</string>
+    <string name="preferences_title_server">Escriba la URL del servidor</string>
+    <string name="preferences_title_show_log">Mostrar el log del GCM</string>
+    <string name="preferences_summary_show_log">si/no</string>
+    
     <string name="default_url">http://incidenciasgas.appspot.com</string>
     
     

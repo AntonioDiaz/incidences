@@ -12,7 +12,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class ActivityDetail extends Activity {
@@ -49,12 +51,26 @@ public class ActivityDetail extends Activity {
 			Integer listType = intent.getIntExtra(ActivityMain.LIST_TYPE_ARG, ActivityMain.PENDING);
 			textView = (TextView)findViewById(R.id.incidence_detail_title);
 			textView.append(": " + incidence.getIdAux().toString());
+			
+			Button buttonState = (Button)findViewById(R.id.button_state);
+			
+			textView = (TextView)findViewById(R.id.incidence_state);
+			TextView textViewCloseDate = (TextView)findViewById(R.id.incidence_close_date);
+			LinearLayout linearLayout = (LinearLayout)findViewById(R.id.date_closed_layout);
 			if (listType == ActivityMain.PENDING) {
-				
+				buttonState.setText(R.string.detail_button_state);
+				textView.setText(getString(R.string.detail_title_open));
+				((ViewGroup)linearLayout.getParent()).removeView(linearLayout);
 			} else if (listType == ActivityMain.CLOSED) {
-				
-			} else if (listType == ActivityMain.CLOSED) {
-				
+				textView.setText(getString(R.string.detail_title_close));
+				((ViewGroup)buttonState.getParent()).removeView(buttonState);
+				if (incidence.getClosedDate()!=null) {
+					textViewCloseDate.setText(sdf.format(incidence.getClosedDate()));
+				}
+			} else if (listType == ActivityMain.ORPHAN) {
+				((ViewGroup)linearLayout.getParent()).removeView(linearLayout);
+				textView.setText(getString(R.string.detail_title_orphan));
+				buttonState.setText(R.string.detail_button_assgnation);				
 			} 
 		}
 	}

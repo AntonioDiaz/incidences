@@ -33,7 +33,7 @@ public class ActivityMain extends Activity {
 
 	TextView mDisplay;
 	AsyncTask<Void, Void, Void> mRegisterTask;
-	private Context mContext;
+	public static Context mContext;
 	private boolean mError = false;
 	public static final Integer TIMER_TASK_PERIOD = 10000;
 	public static final Integer TIMER_TASK_DELAY = 3000;
@@ -46,14 +46,21 @@ public class ActivityMain extends Activity {
 	public static String URL_SERVER;
 	public static SharedPreferences settings;
 	public static final String PREFERENCE_SERVER = "url_server";
+	private static final String PREFERENCE_SHOW_LOG = "show_log";
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		settings = PreferenceManager.getDefaultSharedPreferences(this);
 		mContext = this;
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		/* check internet conexion. */
+		mError = false;
 		inicializeUserText();
-		/* google login is needed. */
 		if (userId == null || !isConnectingToInternet()) {
 			setContentView(R.layout.error);
 			TextView errorDetail = (TextView) findViewById(R.id.error_detail);
@@ -72,10 +79,8 @@ public class ActivityMain extends Activity {
 			checkNotNull(SENDER_ID, "SENDER_ID");
 			/* Make sure the device has the proper dependencies. */
 			GCMRegistrar.checkDevice(this);
-			/*
-			 * Make sure the manifest was properly set - comment out this line
-			 * while developing the app, then uncomment it when it's ready.
-			 */
+			/* Make sure the manifest was properly set - comment out this line
+			 * while developing the app, then uncomment it when it's ready. */
 			GCMRegistrar.checkManifest(this);
 			mDisplay = (TextView) findViewById(R.id.display);
 			registerReceiver(mHandleMessageReceiver, new IntentFilter(DISPLAY_MESSAGE_ACTION));
@@ -131,10 +136,19 @@ public class ActivityMain extends Activity {
 			button = (Button) findViewById(R.id.button_my_incidences_closed);
 			button.setOnClickListener(this.createShowListListener(CLOSED));
 			startService(new Intent(this, ServiceGpsLocation.class));
+			boolean showLog = settings.getBoolean(PREFERENCE_SHOW_LOG, true);
+			if (showLog) {
+				mDisplay.setVisibility(View.VISIBLE);
+			} else {
+				mDisplay.setVisibility(View.INVISIBLE);
+			}
 		}
 	}
-
+	
+	
+	
 	private void inicializeUserText() {
+		ActivityMain.userId = null;
 		AccountManager am = AccountManager.get(this);
 		Account[] accounts = am.getAccountsByType("com.google");
 		if (accounts.length > 0) {
@@ -233,7 +247,7 @@ public class ActivityMain extends Activity {
 	}	
 	
 	public static String getUrlServer(){
-		String urlServer = settings.getString(PREFERENCE_SERVER, "");		
+		String urlServer = settings.getString(PREFERENCE_SERVER, mContext.getString(R.string.default_url));		
 		return urlServer;
 	}
 }

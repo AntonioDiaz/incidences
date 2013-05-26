@@ -25,11 +25,6 @@
                 android:textStyle="bold" />
         </LinearLayout>
 
-        <View
-            android:layout_width="fill_parent"
-            android:layout_height="1dip"
-            android:background="@android:color/darker_gray" />
-
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -39,8 +34,46 @@
                 android:id="@+id/button_call_contact"
                 android:layout_width="0px"
                 android:layout_height="wrap_content"
-                android:layout_weight="2"
+                android:layout_weight="1"
                 android:text="@string/incidence_call" />
+
+            <Button
+                android:id="@+id/button_map"
+                android:layout_width="0px"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/incidence_map" />
+
+            <Button
+                android:id="@+id/button_state"
+                android:layout_width="0px"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/incidence_map" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="0px"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="@string/incidence_state"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/incidence_state"
+                android:layout_width="0px"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:text="@string/temp"
+                android:textColor="@android:color/white"
+                android:textSize="20sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -59,6 +92,31 @@
 
             <TextView
                 android:id="@+id/incidence_date"
+                android:layout_width="0px"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:text="@string/temp"
+                android:textColor="@android:color/white"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/date_closed_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="0px"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="@string/incidence_close_date"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/incidence_close_date"
                 android:layout_width="0px"
                 android:layout_height="wrap_content"
                 android:layout_weight="5"
@@ -99,7 +157,7 @@
             <TextView
                 android:layout_width="0px"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="2"
                 android:text="@string/incidence_phone"
                 android:textColor="@android:color/darker_gray"
                 android:textSize="20sp"
@@ -109,7 +167,7 @@
                 android:id="@+id/incidence_phone"
                 android:layout_width="0px"
                 android:layout_height="wrap_content"
-                android:layout_weight="4"
+                android:layout_weight="5"
                 android:text="@string/temp"
                 android:textColor="@android:color/white"
                 android:textSize="20sp" />
@@ -131,12 +189,6 @@
             android:text="@string/temp"
             android:textColor="@android:color/white"
             android:textSize="20sp" />
-
-        <Button
-            android:id="@+id/button_map"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/incidence_map" />
 
         <TextView
             android:layout_width="fill_parent"
