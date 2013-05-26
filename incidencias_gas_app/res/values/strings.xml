@@ -59,6 +59,7 @@
     
     <string name="error">Error</string>
     <string name="error_cargando_datos">Se ha producido un error en la carga de los datos, por favor contacte con el administrador del sistema</string>
+    <string name="error_updating_incidence">Se ha producido un error al actualizar la incidencia, por favor contacte con el administrador del sistema</string>
     <string name="error_internet">Para poder usar la aplicación es necesario tener activada la conexión a internet.</string>
     <string name="error_login">Para poder usar la aplicación es necesario estar logado den su cuenta de Google.</string>
 

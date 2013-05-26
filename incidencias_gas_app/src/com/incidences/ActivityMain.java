@@ -15,6 +15,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.preference.PreferenceManager;
 import android.telephony.TelephonyManager;
 import android.util.Log;
@@ -53,6 +54,8 @@ public class ActivityMain extends Activity {
 		super.onCreate(savedInstanceState);
 		settings = PreferenceManager.getDefaultSharedPreferences(this);
 		mContext = this;
+		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitNetwork().build();
+		StrictMode.setThreadPolicy(policy); 
 	}
 
 	@Override
