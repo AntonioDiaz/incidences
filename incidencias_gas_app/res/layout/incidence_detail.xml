@@ -70,7 +70,7 @@
                 android:id="@+id/incidence_state"
                 android:layout_width="0px"
                 android:layout_height="wrap_content"
-                android:layout_weight="5"
+                android:layout_weight="4"
                 android:text="@string/temp"
                 android:textColor="@android:color/white"
                 android:textSize="20sp" />
@@ -94,7 +94,7 @@
                 android:id="@+id/incidence_date"
                 android:layout_width="0px"
                 android:layout_height="wrap_content"
-                android:layout_weight="5"
+                android:layout_weight="4"
                 android:text="@string/temp"
                 android:textColor="@android:color/white"
                 android:textSize="20sp" />
@@ -119,7 +119,7 @@
                 android:id="@+id/incidence_close_date"
                 android:layout_width="0px"
                 android:layout_height="wrap_content"
-                android:layout_weight="5"
+                android:layout_weight="4"
                 android:text="@string/temp"
                 android:textColor="@android:color/white"
                 android:textSize="20sp" />
@@ -143,7 +143,7 @@
                 android:id="@+id/incidence_name"
                 android:layout_width="0px"
                 android:layout_height="wrap_content"
-                android:layout_weight="5"
+                android:layout_weight="4"
                 android:text="@string/temp"
                 android:textColor="@android:color/white"
                 android:textSize="20sp" />
@@ -167,7 +167,7 @@
                 android:id="@+id/incidence_phone"
                 android:layout_width="0px"
                 android:layout_height="wrap_content"
-                android:layout_weight="5"
+                android:layout_weight="4"
                 android:text="@string/temp"
                 android:textColor="@android:color/white"
                 android:textSize="20sp" />

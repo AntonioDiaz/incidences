@@ -52,10 +52,16 @@
 						<c:param name="key" value="${myTechnician.keyStr}" />
 					</c:url> 
 					<a href='<c:out value="${deleteLink}" escapeXml="true"/>'>borrar</a>
+					
 					<c:url value="/updateTechnician" var="updateLink">
 						<c:param name="key" value="${myTechnician.keyStr}" />
 					</c:url> 
 					<a href='<c:out value="${updateLink}" escapeXml="true"/>'>modificar</a>
+					
+					<c:url value="/sendAll" var="sendMessageLink">
+						<c:param name="device" value="${myTechnician.registrationGcmId}" />
+					</c:url> 
+					<a href='<c:out value="${sendMessageLink}" escapeXml="true"/>'>enviar notificación</a>
 				</td>
 			</tr>
 		</c:forEach>

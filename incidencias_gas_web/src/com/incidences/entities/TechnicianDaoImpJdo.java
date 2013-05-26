@@ -89,6 +89,7 @@ public class TechnicianDaoImpJdo implements TechnicianDao {
 			technicianToUpdate.setGoogleAccountId(technician.getGoogleAccountId());
 			technicianToUpdate.setName(technician.getName());
 			technicianToUpdate.setPhoneNumber(technician.getPhoneNumber());
+			technicianToUpdate.setRegistrationGcmId(technician.getRegistrationGcmId());
 			if (technician.getLongitude()!=null && technician.getLatitude()!=null) {
 				technicianToUpdate.setLongitude(technician.getLongitude());
 				technicianToUpdate.setLatitude(technician.getLatitude());

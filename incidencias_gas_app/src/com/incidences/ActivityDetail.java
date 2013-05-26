@@ -61,7 +61,7 @@ public class ActivityDetail extends Activity {
 			button = (Button) findViewById(R.id.button_map);
 			String latitude = incidence.getGpsCoordinates()[0];
 			String longitude = incidence.getGpsCoordinates()[1];
-			button.setOnClickListener(createListenerMap(latitude, longitude));
+			button.setOnClickListener(createListenerMap(latitude, longitude, incidence.getContactName()));
 
 			/* filling specific dates for the incidence state. */
 			Integer listType = intent.getIntExtra(ActivityMain.LIST_TYPE_ARG, ActivityMain.PENDING);
@@ -94,7 +94,9 @@ public class ActivityDetail extends Activity {
 	}
 
 	/**
-	 * Call to the server to close an incidence, then open the list of closed incidences.
+	 * Call to the server to close an incidence, then open the list of closed
+	 * incidences.
+	 * 
 	 * @param idIncidence
 	 * @return
 	 */
@@ -105,7 +107,7 @@ public class ActivityDetail extends Activity {
 				HttpParams httpParameters = new BasicHttpParams();
 				HttpConnectionParams.setConnectionTimeout(httpParameters, 3000);
 				HttpConnectionParams.setSoTimeout(httpParameters, 20000);
-				DefaultHttpClient httpclient = new DefaultHttpClient(httpParameters);			
+				DefaultHttpClient httpclient = new DefaultHttpClient(httpParameters);
 				HttpPost httpPost = new HttpPost(ActivityMain.getUrlServer() + "/saveUpdateIncidence");
 				List<NameValuePair> pairs = new ArrayList<NameValuePair>();
 				pairs.add(new BasicNameValuePair("id_technician", ActivityMain.userId));
@@ -113,11 +115,10 @@ public class ActivityDetail extends Activity {
 				pairs.add(new BasicNameValuePair("to_assign", "true"));
 				try {
 					httpPost.setEntity(new UrlEncodedFormEntity(pairs));
-					httpclient.execute(httpPost);					
+					httpclient.execute(httpPost);
 					Toast.makeText(mContext, mContext.getString(R.string.detail_updated), Toast.LENGTH_SHORT).show();
-					Intent intent = new Intent(mContext, ActivityList.class);
-					intent.putExtra(ActivityMain.LIST_TYPE_ARG, ActivityMain.PENDING);
-					mContext.startActivity(intent);
+					setResult(ActivityList.INCIDENCE_ASSIGNED, getIntent());
+					finish();
 				} catch (Exception e) {
 					Log.e(TAG, TAG + " Error: " + e.getMessage());
 					Toast.makeText(mContext, mContext.getString(R.string.error_updating_incidence), Toast.LENGTH_SHORT).show();
@@ -125,9 +126,11 @@ public class ActivityDetail extends Activity {
 			}
 		};
 	}
-	
+
 	/**
-	 * Call to the server to autoasign an incidence, then open the list of pending incidences.
+	 * Call to the server to autoasign an incidence, then open the list of
+	 * pending incidences.
+	 * 
 	 * @param idIncidence
 	 * @return
 	 */
@@ -138,7 +141,7 @@ public class ActivityDetail extends Activity {
 				HttpParams httpParameters = new BasicHttpParams();
 				HttpConnectionParams.setConnectionTimeout(httpParameters, 3000);
 				HttpConnectionParams.setSoTimeout(httpParameters, 20000);
-				DefaultHttpClient httpclient = new DefaultHttpClient(httpParameters);			
+				DefaultHttpClient httpclient = new DefaultHttpClient(httpParameters);
 				HttpPost httpPost = new HttpPost(ActivityMain.getUrlServer() + "/saveUpdateIncidence");
 				List<NameValuePair> pairs = new ArrayList<NameValuePair>();
 				pairs.add(new BasicNameValuePair("id_technician", ActivityMain.userId));
@@ -148,9 +151,8 @@ public class ActivityDetail extends Activity {
 					httpPost.setEntity(new UrlEncodedFormEntity(pairs));
 					httpclient.execute(httpPost);
 					Toast.makeText(mContext, mContext.getString(R.string.detail_updated), Toast.LENGTH_SHORT).show();
-					Intent intent = new Intent(mContext, ActivityList.class);
-					intent.putExtra(ActivityMain.LIST_TYPE_ARG, ActivityMain.CLOSED);
-					mContext.startActivity(intent);
+					setResult(ActivityList.INCIDENCE_CLOSED, getIntent());
+					finish();
 				} catch (Exception e) {
 					Log.e(TAG, TAG + " Error: " + e.getMessage());
 					Toast.makeText(mContext, mContext.getString(R.string.error_updating_incidence), Toast.LENGTH_SHORT).show();
@@ -158,8 +160,8 @@ public class ActivityDetail extends Activity {
 			}
 		};
 	}
-	
-	private OnClickListener createListenerMap(final String latitude, final String longitude) {
+
+	private OnClickListener createListenerMap(final String latitude, final String longitude, final String contectName) {
 		return new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -167,7 +169,7 @@ public class ActivityDetail extends Activity {
 				intent.setAction(Intent.ACTION_VIEW);
 				String myLatitude = latitude;
 				String myLongitude = longitude;
-				intent.setData(Uri.parse("geo:" + myLatitude + "," + myLongitude + "?z=18"));
+				intent.setData(Uri.parse("geo:0,0?q=" + myLatitude + "," + myLongitude + "(" + contectName + ")"));
 				startActivity(intent);
 			}
 		};
@@ -184,11 +186,4 @@ public class ActivityDetail extends Activity {
 			}
 		};
 	}
-
-	@Override
-	protected void onPause() {
-		this.finish();
-		super.onPause();
-	}
-	
 }

@@ -2,18 +2,15 @@ package com.incidences;
 
 import static com.incidences.CommonUtilities.SENDER_ID;
 import static com.incidences.CommonUtilities.displayMessage;
-
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.telephony.TelephonyManager;
 import android.util.Log;
 
 import com.google.android.gcm.GCMBaseIntentService;
 import com.google.android.gcm.GCMRegistrar;
-import com.incidences.R;
 
 /** IntentService responsible for handling GCM messages. */
 public class GCMIntentService extends GCMBaseIntentService {
@@ -28,9 +25,7 @@ public class GCMIntentService extends GCMBaseIntentService {
 	protected void onRegistered(Context context, String registrationId) {
 		Log.i(TAG, "Device registered: regId = " + registrationId);
 		displayMessage(context, getString(R.string.gcm_registered));
-		TelephonyManager telephonyManager = (TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
-		String number = telephonyManager.getLine1Number();
-		ServerUtilities.register(context, registrationId, number);
+		ServerUtilities.register(context, registrationId, ActivityMain.userId);
 	}
 
 	@Override

@@ -23,32 +23,35 @@ import android.widget.Toast;
 public class ActivityList extends ListActivity {
 
 	public static final String INDEX_ELEMENT = "index_element";
+	private static final int DETAIL_CALL = 0;
+	public static final int INCIDENCE_CLOSED = 1;
+	public static final int INCIDENCE_ASSIGNED = 2;
 	private static List<Incidence> list;
 	private Context mContext;
 	private ProgressDialog pd;
 	private Integer listType = ActivityMain.PENDING;
 	private Thread myThread;
-	
+
 	@Override
 	protected void onStop() {
 		super.onStop();
 		pd.dismiss();
 	}
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.incidences);
 		mContext = this;
 		Intent intent = getIntent();
-		if (intent!=null) {
+		if (intent != null) {
 			listType = intent.getIntExtra(ActivityMain.LIST_TYPE_ARG, ActivityMain.PENDING);
 		}
-		TextView textViewTitle = (TextView)findViewById(R.id.incicences_list_title);
+		TextView textViewTitle = (TextView) findViewById(R.id.incicences_list_title);
 		String newTitle;
 		if (listType == ActivityMain.PENDING) {
 			newTitle = this.getString(R.string.title_pending);
-		} else if (listType == ActivityMain.ORPHAN){
+		} else if (listType == ActivityMain.ORPHAN) {
 			newTitle = this.getString(R.string.title_orphans);
 		} else {
 			newTitle = this.getString(R.string.title_closed);
@@ -64,18 +67,18 @@ public class ActivityList extends ListActivity {
 		@Override
 		public boolean handleMessage(Message msg) {
 			pd.dismiss();
-			TextView textView = (TextView)findViewById(R.id.incicences_list_msg);
+			TextView textView = (TextView) findViewById(R.id.incicences_list_msg);
 			if (msg.what == 1) {
-				if (list!=null && list.size()>0) {
+				if (list != null && list.size() > 0) {
 					setListAdapter(new ComplexListAdapter(mContext));
-					((ViewGroup)textView.getParent()).removeView(textView);
+					((ViewGroup) textView.getParent()).removeView(textView);
 				} else {
 					String text = getString(R.string.list_empty_pending);
-					if (listType==ActivityMain.CLOSED){
+					if (listType == ActivityMain.CLOSED) {
 						text = getString(R.string.list_empty_closed);
-					} else if (listType==ActivityMain.ORPHAN) {
-						text = getString(R.string.list_empty_orphans);						
-					}					
+					} else if (listType == ActivityMain.ORPHAN) {
+						text = getString(R.string.list_empty_orphans);
+					}
 					textView.setText(text);
 				}
 			} else {
@@ -87,10 +90,28 @@ public class ActivityList extends ListActivity {
 
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
-		Intent intent = new Intent (this, ActivityDetail.class);
+		Intent intent = new Intent(this, ActivityDetail.class);
 		intent.putExtra(INDEX_ELEMENT, position);
 		intent.putExtra(ActivityMain.LIST_TYPE_ARG, listType);
-		startActivity(intent);
+		startActivityForResult(intent, DETAIL_CALL);
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (requestCode == DETAIL_CALL) {
+			if (resultCode == INCIDENCE_CLOSED) {
+				Intent intent = new Intent(mContext, ActivityList.class);
+				intent.putExtra(ActivityMain.LIST_TYPE_ARG, ActivityMain.CLOSED);
+				mContext.startActivity(intent);
+				finish();
+			}
+			if (resultCode == INCIDENCE_ASSIGNED) {
+				Intent intent = new Intent(mContext, ActivityList.class);
+				intent.putExtra(ActivityMain.LIST_TYPE_ARG, ActivityMain.PENDING);
+				mContext.startActivity(intent);
+				finish();
+			}
+		}
 	}
 
 	public List<Incidence> getList() {
@@ -144,12 +165,13 @@ public class ActivityList extends ListActivity {
 			return view;
 		}
 	}
-	
-	public static List<Incidence> getIncidences(){
+
+	public static List<Incidence> getIncidences() {
 		return ActivityList.list;
 	}
-	public static void setIncidences(List<Incidence> list){
-		ActivityList.list = list ;
+
+	public static void setIncidences(List<Incidence> list) {
+		ActivityList.list = list;
 	}
-	
+
 }

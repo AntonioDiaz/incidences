@@ -32,12 +32,12 @@ public final class ServerUtilities {
 	 * 
 	 * @return whether the registration succeeded or not.
 	 */
-	static boolean register(final Context context, final String regId, String number) {
+	static boolean register(final Context context, final String regId, String accountId) {
 		Log.i(TAG, "registering device (regId = " + regId + ")");
 		String serverUrl = ActivityMain.getUrlServer() + "/register";
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("regId", regId);
-		params.put("phoneNumber", number);
+		params.put("account_id", accountId);
 		long backoff = BACKOFF_MILLI_SECONDS + random.nextInt(1000);
 		/* Once GCM returns a registration id, we need to register it in the
 		 * demo server. As the server might be down, we will retry it a couple times. */

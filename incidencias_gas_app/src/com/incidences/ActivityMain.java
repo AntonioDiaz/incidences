@@ -17,7 +17,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.preference.PreferenceManager;
-import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -39,7 +38,7 @@ public class ActivityMain extends Activity {
 	public static final Integer TIMER_TASK_PERIOD = 10000;
 	public static final Integer TIMER_TASK_DELAY = 3000;
 	public static final String LIST_TYPE_ARG = "LIST_TYPE_ARG";
-	public static String userId = null;
+	public static String userId = "";
 	public static final Integer PENDING = 0;
 	public static final Integer ORPHAN = 1;
 	public static final Integer CLOSED = 2;
@@ -106,9 +105,7 @@ public class ActivityMain extends Activity {
 					mRegisterTask = new AsyncTask<Void, Void, Void>() {
 						@Override
 						protected Void doInBackground(Void... params) {
-							TelephonyManager telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
-							String number = telephonyManager.getLine1Number();
-							boolean registered = ServerUtilities.register(context, regId, number);
+							boolean registered = ServerUtilities.register(context, regId, userId);
 							/*
 							 * At this point all attempts to register with the
 							 * app server failed, so we need to unregister the
@@ -156,6 +153,8 @@ public class ActivityMain extends Activity {
 		Account[] accounts = am.getAccountsByType("com.google");
 		if (accounts.length > 0) {
 			ActivityMain.userId = accounts[0].name;
+		} else {
+			ActivityMain.userId = "test@gmail.com";
 		}
 	}
 

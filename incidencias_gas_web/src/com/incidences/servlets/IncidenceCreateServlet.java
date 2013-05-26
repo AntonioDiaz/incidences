@@ -10,8 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
 import com.incidences.entities.Incidence;
-import com.incidences.entities.IncidencesDao;
-import com.incidences.entities.IncidencesDaoImplJdo;
+import com.incidences.entities.Technician;
 import com.incidences.entities.TechnicianDao;
 import com.incidences.entities.TechnicianDaoImpJdo;
 
@@ -28,20 +27,16 @@ public class IncidenceCreateServlet extends BaseServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {		
-		IncidencesDao incidencesDao = new IncidencesDaoImplJdo();
 		TechnicianDao technicianDao = new TechnicianDaoImpJdo();
 		String contactName = getParameter(req, "contact_name");
 		String contactPhone = getParameter(req, "contact_phone");
 		String incidenceAddress = getParameter(req, "incidence_address");
 		String incidenceDesc = getParameter(req, "incidence_details");
 		Incidence incidence = new Incidence(contactName, contactPhone, incidenceAddress, incidenceDesc);
-		String technicianStr = getParameter(req, "technician", "");
-		if (technicianStr.equals("")) {
-			incidencesDao.create(incidence);
-		} else {
-			Key key = KeyFactory.stringToKey(technicianStr);
-			technicianDao.updateTechnicianAddIncidence(key, incidence);
-		}
+		Technician technician = technicianDao.getTechnician("sinasignar");
+		String technicianStr = getParameter(req, "technician", technician.getKeyStr());
+		Key key = KeyFactory.stringToKey(technicianStr);
+		technicianDao.updateTechnicianAddIncidence(key, incidence);
 		RequestDispatcher rd = getServletContext().getRequestDispatcher("/incidencesList");
 		rd.forward(req, resp);
 	}
