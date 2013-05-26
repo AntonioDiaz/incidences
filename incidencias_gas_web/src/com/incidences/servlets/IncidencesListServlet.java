@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.incidences.entities.Incidence;
 import com.incidences.entities.IncidencesDao;
 import com.incidences.entities.IncidencesDaoImplJdo;
+import com.incidences.entities.TechnicianDao;
+import com.incidences.entities.TechnicianDaoImpJdo;
 
 /**
  * @author toni Servlet that select a list with the incidences.
@@ -25,7 +27,13 @@ public class IncidencesListServlet extends BaseServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 		IncidencesDao incidencesDao = new IncidencesDaoImplJdo();
+		TechnicianDao technicianDao = new TechnicianDaoImpJdo();
 		List<Incidence> allIncicendesList = incidencesDao.allIncicendesList();
+		for (Incidence incidence : allIncicendesList) {
+			if (incidence.getTechnician()!=null) {
+				incidence.setTechnician(technicianDao.getTechnician(incidence.getTechnician().getKey()));
+			}
+		}
 		req.setAttribute("incidences_list", allIncicendesList);
 		RequestDispatcher rd = getServletContext().getRequestDispatcher(PATH_JSP + "incidences_list.jsp");
 

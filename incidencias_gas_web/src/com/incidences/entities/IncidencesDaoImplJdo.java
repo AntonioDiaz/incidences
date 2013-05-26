@@ -28,7 +28,7 @@ public class IncidencesDaoImplJdo implements IncidencesDao {
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		pm.getFetchPlan().setMaxFetchDepth(2);
 		pm.getFetchPlan().setFetchSize(2);
-		//pm.getFetchPlan().setMaxFetchDepth(2);
+		// pm.getFetchPlan().setMaxFetchDepth(2);
 		final Query query = pm.newQuery(Incidence.class);
 		try {
 			incidences = (List<Incidence>) query.execute();
@@ -76,11 +76,11 @@ public class IncidencesDaoImplJdo implements IncidencesDao {
 		final Query query = pm.newQuery(Incidence.class);
 		query.setFilter("idAux==" + parseLong);
 		try {
-			incidences = (List<Incidence>)query.execute();
+			incidences = (List<Incidence>) query.execute();
 		} finally {
 			pm.close();
 		}
-		return incidences.size()<=0?null:incidences.get(0);
+		return incidences.size() <= 0 ? null : incidences.get(0);
 	}
 
 	@Override
@@ -100,5 +100,23 @@ public class IncidencesDaoImplJdo implements IncidencesDao {
 			}
 			pm.close();
 		}
+	}
+
+	@Override
+	public Incidence selectIncidence(Key key) {
+		PersistenceManager pm = PMF.get().getPersistenceManager();
+		Transaction transaction = pm.currentTransaction();
+		Incidence incidence = null;
+		try {
+			transaction.begin();
+			incidence = pm.getObjectById(Incidence.class, key);
+			transaction.commit();
+		} finally {
+			if (transaction.isActive()) {
+				transaction.rollback();
+			}
+			pm.close();
+		}
+		return incidence;
 	}
 }

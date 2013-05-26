@@ -22,6 +22,9 @@ public class TechnicianDaoImpJdo implements TechnicianDao {
 		Query query = pm.newQuery(Technician.class);
 		try {
 			technicians = (List<Technician>) query.execute();
+			for (Technician technician : technicians) {
+				technician.getIncidencesList().size();
+			}
 		} finally {
 			pm.close();
 		}

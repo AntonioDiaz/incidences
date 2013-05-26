@@ -36,4 +36,6 @@ public interface IncidencesDao {
 
 	void update(Key key, Incidence incidence);
 	
+	public Incidence selectIncidence (Key key);
+	
 }
