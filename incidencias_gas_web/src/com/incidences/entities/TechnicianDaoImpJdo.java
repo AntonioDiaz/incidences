@@ -1,7 +1,8 @@
 package com.incidences.entities;
 
-import java.util.Date;
+import java.util.Calendar;
 import java.util.List;
+import java.util.TimeZone;
 
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
@@ -88,7 +89,8 @@ public class TechnicianDaoImpJdo implements TechnicianDao {
 			if (technician.getLongitude()!=null && technician.getLatitude()!=null) {
 				technicianToUpdate.setLongitude(technician.getLongitude());
 				technicianToUpdate.setLatitude(technician.getLatitude());
-				technicianToUpdate.setLastRegistrationDate(new Date());
+				Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("Europe/Madrid"));
+				technicianToUpdate.setLastRegistrationDate(calendar.getTime());
 			}
 		} finally {
 			pm.close();

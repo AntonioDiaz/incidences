@@ -35,18 +35,20 @@ public class IncidencesListJsonServlet extends BaseServlet {
 		TechnicianDao technicianDao = new TechnicianDaoImpJdo();
 		String idTechnician = getParameter(req, "id_technician", "");
 		Technician technician = technicianDao.getTechnician(idTechnician);
+		Technician technicianSinAsignar = technicianDao.getTechnician("sinasignar");
 		Integer listType = Integer.parseInt(getParameter (req, "list_type", "0"));
 		List<Incidence> allIncicendesList = incidencesDao.allIncicendesList();
 		List<Incidence> listReturn = new ArrayList<Incidence>();
 		if (technician!=null) {
 			for (Incidence incidence : allIncicendesList) {
 				if (listType==ORPHAN) {
-					if (incidence.getClosedDate()==null && incidence.getTechnician()==null){
+					if (incidence.getClosedDate()==null && incidence.getTechnician()!=null 
+							&& technicianSinAsignar.getKey().equals(incidence.getTechnician().getKey())){
 						listReturn.add(incidence);
 					}								
 				} else if (listType == CLOSED) {
 					if (incidence.getClosedDate()!=null && incidence.getTechnician()!=null 
-							&& idTechnician.equals(incidence.getTechnician().getGoogleAccountId())) {
+							&& technician.getKey().equals(incidence.getTechnician().getKey())) {
 						listReturn.add(incidence);
 					}				
 				} else {

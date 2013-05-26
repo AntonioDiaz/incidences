@@ -1,6 +1,8 @@
 package com.incidences.entities;
 
+import java.util.Calendar;
 import java.util.Date;
+import java.util.TimeZone;
 
 import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.PersistenceCapable;
@@ -56,7 +58,8 @@ public class Incidence {
 		this.contactPhone = contactPhone;
 		this.incidenceAddress = incidenceAddress;
 		this.incidenceDesc = incidenceDesc;
-		this.incidenceDate = new Date();
+		Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("Europe/Madrid"));
+		this.incidenceDate = calendar.getTime();
 	}
 
 	public Incidence() {

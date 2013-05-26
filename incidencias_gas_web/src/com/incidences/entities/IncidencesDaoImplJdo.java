@@ -6,6 +6,7 @@ import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 import javax.jdo.Transaction;
 
+import com.google.appengine.api.datastore.Key;
 import com.incidences.persistence.PMF;
 
 /**
@@ -63,6 +64,40 @@ public class IncidencesDaoImplJdo implements IncidencesDao {
 		try {
 			pm.deletePersistent(toDelete);
 		} finally {
+			pm.close();
+		}
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public Incidence selectIncidence(long parseLong) {
+		List<Incidence> incidences = null;
+		PersistenceManager pm = PMF.get().getPersistenceManager();
+		final Query query = pm.newQuery(Incidence.class);
+		query.setFilter("idAux==" + parseLong);
+		try {
+			incidences = (List<Incidence>)query.execute();
+		} finally {
+			pm.close();
+		}
+		return incidences.size()<=0?null:incidences.get(0);
+	}
+
+	@Override
+	public void update(Key key, Incidence incidenceNew) {
+		PersistenceManager pm = PMF.get().getPersistenceManager();
+		Transaction transaction = pm.currentTransaction();
+		try {
+			transaction.begin();
+			Incidence incidence = pm.getObjectById(Incidence.class, key);
+			Technician technician = pm.getObjectById(Technician.class, incidenceNew.getTechnician().getKey());
+			incidence.setClosedDate(incidenceNew.getClosedDate());
+			incidence.setTechnician(technician);
+			transaction.commit();
+		} finally {
+			if (transaction.isActive()) {
+				transaction.rollback();
+			}
 			pm.close();
 		}
 	}

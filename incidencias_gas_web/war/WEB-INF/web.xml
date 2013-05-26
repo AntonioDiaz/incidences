@@ -173,4 +173,13 @@
 		<servlet-name>TechnicianSaveUpdateServlet</servlet-name>
 		<url-pattern>/saveUpdateTechnician</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>IncidenceSaveUpdateServlet</servlet-name>
+		<servlet-class>com.incidences.servlets.IncidenceSaveUpdateServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>IncidenceSaveUpdateServlet</servlet-name>
+		<url-pattern>/saveUpdateIncidence</url-pattern>
+	</servlet-mapping>
 </web-app>
